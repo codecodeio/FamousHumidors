@@ -1,0 +1,1024 @@
+﻿@model FamousHumidors.Models.Item
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Item</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.name_cleaned)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name_cleaned)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.name_display)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name_display)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.brand)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.brand)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.brandgroup)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.brandgroup)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.description_item)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.description_item)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.description_brand)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.description_brand)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.image_thumbnail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.image_thumbnail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.image_medium)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.image_medium)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.image_large)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.image_large)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.image_brand_band)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.image_brand_band)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.image_brand_label)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.image_brand_label)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.video_brand)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.video_brand)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.is_free_shipping)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.is_free_shipping)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.is_new)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.is_new)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.is_on_sale)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.is_on_sale)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.keyword)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.keyword)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.price_retail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.price_retail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.price_sale)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.price_sale)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.price_srp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.price_srp)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.price_sort)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.price_sort)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sku)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sku)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sort_default)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sort_default)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.url_detail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.url_detail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.url_detail2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.url_detail2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.brandlink)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.brandlink)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.brandgrouplink)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.brandgrouplink)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.is_discontinued)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.is_discontinued)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.category_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.category_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.margin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.margin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.is_kit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.is_kit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.offer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.offer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.is_rev)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.is_rev)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sortorder1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sortorder1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.avail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.avail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.brand_code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.brand_code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.bgcode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.bgcode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.is_tiered)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.is_tiered)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.humidor_trays)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.humidor_trays)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.famous_exclusives)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.famous_exclusives)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.humidifier_included)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.humidifier_included)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.wrapper_color)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.wrapper_color)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.avg_rating)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.avg_rating)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.brand_rating)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.brand_rating)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.package_type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.package_type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.humidor_length)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.humidor_length)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.humidor_capacity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.humidor_capacity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.humidor_width)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.humidor_width)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.shape)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.shape)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.country_of_origin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.country_of_origin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.humidor_color)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.humidor_color)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.subihdnum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.subihdnum)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.strength)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.strength)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.length)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.length)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ring_gauge)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ring_gauge)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.group_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.group_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.humidor_material)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.humidor_material)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.humidor_size)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.humidor_size)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tube)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tube)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.vote_count)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.vote_count)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.flavor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.flavor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.humidor_depth)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.humidor_depth)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cigar_type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cigar_type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.boxpress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.boxpress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.quantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.quantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.hygrometer_included)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hygrometer_included)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.brandgroup_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.brandgroup_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.brand_code_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.brand_code_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.category_id_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.category_id_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cigar_type_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cigar_type_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.country_of_origin_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.country_of_origin_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.flavor_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.flavor_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.humidor_color_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.humidor_color_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.humidor_material_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.humidor_material_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.humidor_size_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.humidor_size_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.package_type_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.package_type_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.shape_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.shape_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.strength_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.strength_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.wrapper_color_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.wrapper_color_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.brand_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.brand_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sampler_brand_ids)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sampler_brand_ids)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sampler_group_ids)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sampler_group_ids)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sampler_ids_qtys)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sampler_ids_qtys)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.itemdes2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.itemdes2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sizestr)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sizestr)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.wrapper_origin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.wrapper_origin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.wrapperleaf_type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.wrapperleaf_type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.wrapper_origin_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.wrapper_origin_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.wrapperleaf_type_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.wrapperleaf_type_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.paok)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.paok)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sflg)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sflg)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.normbrand)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.normbrand)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.normbrandgroup)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.normbrandgroup)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.normname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.normname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fsaled)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fsaled)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tsaled)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tsaled)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pref)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pref)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.realavail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.realavail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.acc_color)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.acc_color)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.acc_color_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.acc_color_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.show_wrapper)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.show_wrapper)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mostly_acc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mostly_acc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.percent_off)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.percent_off)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.device_type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.device_type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.device_type_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.device_type_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nic_strength)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nic_strength)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.prod_life)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.prod_life)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ec_flavor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ec_flavor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ec_flavor_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ec_flavor_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ec_tip_color)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ec_tip_color)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ec_tip_color_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ec_tip_color_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ec_color)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ec_color)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ec_color_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ec_color_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ec_size)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ec_size)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pkg_qty)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pkg_qty)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sort_sale_margin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sort_sale_margin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.is_monster)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.is_monster)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.price_monster)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.price_monster)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.brand_review_link)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.brand_review_link)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.item_review_link)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.item_review_link)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.package_string)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.package_string)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.offer_info)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.offer_info)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.preorder_message)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.preorder_message)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.preorder_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.preorder_date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.has_free_offer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.has_free_offer)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
