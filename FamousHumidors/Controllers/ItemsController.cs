@@ -4,15 +4,19 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
 using FamousHumidors.Models;
+using FamousHumidors.ViewModels;
 
 namespace FamousHumidors.Controllers
 {
     public class ItemsController : Controller
     {
         private const string Humidor_Pref = "HU";
+        private const string Hygrometer_Pref = "HY";
+        private const string Lighter_Pref = "LG";
         private Items db = new Items();
 
         // GET: Items
@@ -31,13 +35,17 @@ namespace FamousHumidors.Controllers
                  where r.pref == Humidor_Pref
                  select r
                 )
-                .Select(r => new HumidorDisplayModel
+                .Select(r => new ItemBaseModel
                 {
                     Id = r.ihdnum,
                     Name = r.name_cleaned,
                     Brand = r.brand,
                     BrandGroup = r.brandgroup,
-                    Image = r.image_large
+                    Image = r.image_large,
+                    Price = (double)r.price_sort,
+                    PriceMsrp = (double)r.price_srp,
+                    Category = r.category_id,
+                    Url = "/" + r.url_detail
                 })
                 .Take(10);
                 
@@ -68,16 +76,42 @@ namespace FamousHumidors.Controllers
         // GET: Items/Details/5
         public ActionResult Details(int? id)
         {
+            //id not provided
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
+            //find item in DB
             Item item = db.Products.Find(id);
+
+            //item not found
             if (item == null)
             {
                 return HttpNotFound();
             }
-            return View(item);
+
+            //base item
+            var baseItem = new ItemBaseModel(item);
+
+            //default detail item
+            var detailItem = new Dictionary<string,string>();
+
+            //detail item
+            switch (baseItem.Category)
+            {
+                case "Humidors":
+                    detailItem = new HumidorModel(item).ToDictionary();
+                    break;
+                case "Lighters":
+                    detailItem = new LighterModel(item).ToDictionary();
+                    break;
+            }
+
+            //view model
+            var detailViewModel = new DetailViewModel(baseItem,detailItem);
+
+            return View(detailViewModel);
         }
 
         // GET: Items/Create

@@ -9,10 +9,10 @@ namespace FamousHumidors.ViewModels
 {
     public class HomeViewModel
     {
-        public IQueryable<HumidorDisplayModel> NewArrivals { get; set; }
-        public IQueryable<HumidorDisplayModel> BestSellers { get; set; }
+        public IQueryable<ItemBaseModel> NewArrivals { get; set; }
+        public IQueryable<ItemBaseModel> BestSellers { get; set; }
 
-        public HomeViewModel(IQueryable<HumidorDisplayModel> newArrivals, IQueryable<HumidorDisplayModel> bestSellers)
+        public HomeViewModel(IQueryable<ItemBaseModel> newArrivals, IQueryable<ItemBaseModel> bestSellers)
         {
             NewArrivals = newArrivals;
             BestSellers = bestSellers;

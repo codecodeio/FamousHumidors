@@ -1,4 +1,4 @@
-@charset "utf-8";
+﻿@charset "utf-8";
 /* CSS Document */
 
 /******************************
@@ -1435,6 +1435,7 @@ section
 	font-size: 12px;
 	line-height: 18px;
 	margin-bottom: 0px;
+    padding-right: 10px;
 	color: #51545f;
 }
 

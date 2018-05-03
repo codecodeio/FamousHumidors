@@ -24,7 +24,7 @@ namespace FamousHumidors.Controllers
                 where r.pref == Humidor_Pref
                 select r
                )
-               .Select(r => new HumidorDisplayModel
+               .Select(r => new ItemBaseModel
                {
                    Id = r.ihdnum,
                    Name = r.name_cleaned,
@@ -33,7 +33,8 @@ namespace FamousHumidors.Controllers
                    Image = r.image_large,
                    Price = (double)r.price_sort,
                    PriceMsrp = (double)r.price_srp,
-                   Category = r.category_id
+                   Category = r.category_id,
+                   Url = "/" + r.url_detail
                })
                .Take(5);
 
@@ -43,7 +44,7 @@ namespace FamousHumidors.Controllers
                 where r.pref == Hygrometer_Pref
                 select r
                )
-               .Select(r => new HumidorDisplayModel
+               .Select(r => new ItemBaseModel
                {
                    Id = r.ihdnum,
                    Name = r.name_cleaned,
@@ -52,7 +53,8 @@ namespace FamousHumidors.Controllers
                    Image = r.image_large,
                    Price = (double)r.price_sort,
                    PriceMsrp = (double)r.price_srp,
-                   Category = r.category_id
+                   Category = r.category_id,
+                   Url = "/" + r.url_detail
                })
                .Take(5);
 
@@ -62,7 +64,7 @@ namespace FamousHumidors.Controllers
                 where r.pref == Lighter_Pref
                 select r
                )
-               .Select(r => new HumidorDisplayModel
+               .Select(r => new ItemBaseModel
                {
                    Id = r.ihdnum,
                    Name = r.name_cleaned,
@@ -71,7 +73,8 @@ namespace FamousHumidors.Controllers
                    Image = r.image_large,
                    Price = (double)r.price_sort,
                    PriceMsrp = (double)r.price_srp,
-                   Category = r.category_id
+                   Category = r.category_id,
+                   Url = "/" + r.url_detail
                })
                .Take(5);
 
@@ -83,7 +86,7 @@ namespace FamousHumidors.Controllers
                orderby r.vote_count descending
                select r
               )
-              .Select(r => new HumidorDisplayModel
+              .Select(r => new ItemBaseModel
               {
                   Id = r.ihdnum,
                   Name = r.name_cleaned,
@@ -92,7 +95,8 @@ namespace FamousHumidors.Controllers
                   Image = r.image_large,
                   Price = (double)r.price_sort,
                   PriceMsrp = (double)r.price_srp,
-                  Category = r.category_id
+                  Category = r.category_id,
+                  Url = "/" + r.url_detail
               })
               .Take(10);
 
