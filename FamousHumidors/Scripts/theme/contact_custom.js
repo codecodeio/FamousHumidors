@@ -153,11 +153,11 @@ jQuery(document).ready(function($)
 
 	function initGoogleMap()
 	{
-		var myLatlng = new google.maps.LatLng(42.373122,-71.112387);
-    	var mapOptions = 
+        var myLatlng = new google.maps.LatLng(40.740421, -75.223222);
+       var mapOptions = 
     	{
     		center: myLatlng,
-	       	zoom: 16,
+	       	zoom: 15,
 			mapTypeId: google.maps.MapTypeId.ROADMAP,
 			draggable: true,
 			scrollwheel: false,
@@ -341,7 +341,7 @@ jQuery(document).ready(function($)
 		var image = 'images/map_marker.png';
 		var marker = new google.maps.Marker(
 		{
-			position: new google.maps.LatLng(42.373122,-71.112387),
+			position: new google.maps.LatLng(40.740421, -75.223222),
 			map: map,
 			icon: image
 		});

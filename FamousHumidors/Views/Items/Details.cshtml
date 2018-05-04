@@ -1,9 +1,7 @@
 ﻿@model FamousHumidors.ViewModels.DetailViewModel
 
 @{
-    ViewBag.Title = "Humidor";
-    var category = Model.GetType().GetProperty("Humidor");
-    ViewBag.Title = category;
+    ViewBag.Title = "Famous Humidors : " + Model.BaseItem.Category;
 }
 
 <link rel="stylesheet" href="/Content/plugins/themify-icons/themify-icons.css">
@@ -33,14 +31,14 @@
             <div class="single_product_pics">
                 <div class="row">
                     @*<div class="col-lg-3 thumbnails_col order-lg-1 order-2">
-                        <div class="single_product_thumbnails">
-                            <ul>
-                                <li class="active"><img src="https://www.famous-smoke.com/@Html.DisplayFor(model => Model.BaseItem.Image)" alt="" data-image="https://www.famous-smoke.com/@Html.DisplayFor(model => Model.BaseItem.Image)"></li>
-                                <li><img src="/images/single_2_thumb.jpg" alt="" data-image="/images/single_2.jpg"></li>
-                                <li><img src="/images/single_3_thumb.jpg" alt="" data-image="/images/single_3.jpg"></li>
-                            </ul>
-                        </div>
-                    </div>*@
+                            <div class="single_product_thumbnails">
+                                <ul>
+                                    <li class="active"><img src="https://www.famous-smoke.com/@Html.DisplayFor(model => Model.BaseItem.Image)" alt="" data-image="https://www.famous-smoke.com/@Html.DisplayFor(model => Model.BaseItem.Image)"></li>
+                                    <li><img src="/images/single_2_thumb.jpg" alt="" data-image="/images/single_2.jpg"></li>
+                                    <li><img src="/images/single_3_thumb.jpg" alt="" data-image="/images/single_3.jpg"></li>
+                                </ul>
+                            </div>
+                        </div>*@
                     <div class="col-lg-9 image_col order-lg-2 order-1">
                         <div class="single_product_image">
                             <div class="single_product_image_background" style="background-image:url(https://www.famous-smoke.com/@Html.DisplayFor(model => Model.BaseItem.Image))"></div>
@@ -63,61 +61,61 @@
                 <ul class="star_rating">
                     @if (Model.BaseItem.AverageRating >= 50)
                     {
-                     <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                        <li><i class="fa fa-star" aria-hidden="true"></i></li>
                     }
                     else
                     {
-                     <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+                        <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
                     }
                     @if (Model.BaseItem.AverageRating >= 60)
                     {
-                     <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                        <li><i class="fa fa-star" aria-hidden="true"></i></li>
                     }
                     else
                     {
-                     <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+                        <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
                     }
                     @if (Model.BaseItem.AverageRating >= 70)
                     {
-                     <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                        <li><i class="fa fa-star" aria-hidden="true"></i></li>
                     }
                     else
                     {
-                     <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+                        <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
                     }
                     @if (Model.BaseItem.AverageRating >= 80)
                     {
-                     <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                        <li><i class="fa fa-star" aria-hidden="true"></i></li>
                     }
                     else
                     {
-                     <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+                        <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
                     }
                     @if (Model.BaseItem.AverageRating >= 90)
                     {
-                     <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                        <li><i class="fa fa-star" aria-hidden="true"></i></li>
                     }
                     else
                     {
-                     <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+                        <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
                     }
 
 
                     @*<li><i class="fa fa-star" aria-hidden="true"></i></li>
-                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                    <li><i class="fa fa-star-o" aria-hidden="true"></i></li>*@
+                        <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                        <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                        <li><i class="fa fa-star-o" aria-hidden="true"></i></li>*@
                 </ul>
                 <div class="product_color">
-                    @if(Model.BaseItem.Category == "Humidors")
+                    @if (Model.BaseItem.Category == "Humidors")
                     {
                         <span>Capacity: @Html.DisplayFor(model => Model.DetailItem["Capacity"])</span>
                     }
                     @*<ul>
-                        <li style="background: #e54e5d"></li>
-                        <li style="background: #252525"></li>
-                        <li style="background: #60b3f3"></li>
-                    </ul>*@
+                            <li style="background: #e54e5d"></li>
+                            <li style="background: #252525"></li>
+                            <li style="background: #60b3f3"></li>
+                        </ul>*@
                 </div>
                 <div class="quantity d-flex flex-column flex-sm-row align-items-sm-center">
                     <span>Quantity:</span>
@@ -155,39 +153,38 @@
             <div class="col">
 
                 <!-- Tab Description -->
-
                 @*<div id="tab_1" class="tab_container">
-                    <div class="row">
-                        <div class="col-lg-5 desc_col">
-                            <div class="tab_title">
-                                <h4>Description</h4>
+                        <div class="row">
+                            <div class="col-lg-5 desc_col">
+                                <div class="tab_title">
+                                    <h4>Description</h4>
+                                </div>
+                                <div class="tab_text_block">
+                                    <h2>Pocket cotton sweatshirt</h2>
+                                    <p>Nam tempus turpis at metus scelerisque placerat nulla deumantos solicitud felis. Pellentesque diam dolor, elementum etos lobortis des mollis ut...</p>
+                                </div>
+                                <div class="tab_image">
+                                    <img src="/images/desc_1.jpg" alt="">
+                                </div>
+                                <div class="tab_text_block">
+                                    <h2>Pocket cotton sweatshirt</h2>
+                                    <p>Nam tempus turpis at metus scelerisque placerat nulla deumantos solicitud felis. Pellentesque diam dolor, elementum etos lobortis des mollis ut...</p>
+                                </div>
                             </div>
-                            <div class="tab_text_block">
-                                <h2>Pocket cotton sweatshirt</h2>
-                                <p>Nam tempus turpis at metus scelerisque placerat nulla deumantos solicitud felis. Pellentesque diam dolor, elementum etos lobortis des mollis ut...</p>
-                            </div>
-                            <div class="tab_image">
-                                <img src="/images/desc_1.jpg" alt="">
-                            </div>
-                            <div class="tab_text_block">
-                                <h2>Pocket cotton sweatshirt</h2>
-                                <p>Nam tempus turpis at metus scelerisque placerat nulla deumantos solicitud felis. Pellentesque diam dolor, elementum etos lobortis des mollis ut...</p>
+                            <div class="col-lg-5 offset-lg-2 desc_col">
+                                <div class="tab_image">
+                                    <img src="/images/desc_2.jpg" alt="">
+                                </div>
+                                <div class="tab_text_block">
+                                    <h2>Pocket cotton sweatshirt</h2>
+                                    <p>Nam tempus turpis at metus scelerisque placerat nulla deumantos solicitud felis. Pellentesque diam dolor, elementum etos lobortis des mollis ut...</p>
+                                </div>
+                                <div class="tab_image desc_last">
+                                    <img src="/images/desc_3.jpg" alt="">
+                                </div>
                             </div>
                         </div>
-                        <div class="col-lg-5 offset-lg-2 desc_col">
-                            <div class="tab_image">
-                                <img src="/images/desc_2.jpg" alt="">
-                            </div>
-                            <div class="tab_text_block">
-                                <h2>Pocket cotton sweatshirt</h2>
-                                <p>Nam tempus turpis at metus scelerisque placerat nulla deumantos solicitud felis. Pellentesque diam dolor, elementum etos lobortis des mollis ut...</p>
-                            </div>
-                            <div class="tab_image desc_last">
-                                <img src="/images/desc_3.jpg" alt="">
-                            </div>
-                        </div>
-                    </div>
-                </div>*@
+                    </div>*@
 
                 <!-- Tab Additional Info -->
 
@@ -195,9 +192,9 @@
                     <div class="row">
                         <div class="col additional_info_col">
                             @*<div class="tab_title additional_info_title">
-                                <h4>Additional Information</h4>
-                            </div>*@
-                            @if(Model.BaseItem.Category == "Humidors")
+                                    <h4>Additional Information</h4>
+                                </div>*@
+                            @if (Model.BaseItem.Category == "Humidors")
                             {
                                 <p>CAPACITY:<span>@Html.DisplayFor(model => Model.DetailItem["Capacity"])</span></p>
                                 <p>SIZE:<span>@Html.DisplayFor(model => Model.DetailItem["Size"])</span></p>
@@ -209,12 +206,13 @@
                                 {
                                     <p>HYGOMETER:<span>Included</span></p>
                                 }
-                                else {
+                                else
+                                {
                                     <p>HYGOMETER:<span>Included</span></p>
                                 }
 
                             }
-                            else if(Model.BaseItem.Category == "Lighters")
+                            else if (Model.BaseItem.Category == "Lighters")
                             {
                                 <p>COLOR:<span>@Html.DisplayFor(model => Model.DetailItem["Color"])</span></p>
                             }
@@ -223,94 +221,93 @@
                 </div>
 
                 <!-- Tab Reviews -->
-
                 @*<div id="tab_3" class="tab_container">
-                    <div class="row">
+                        <div class="row">
 
-                        <!-- User Reviews -->
+                            <!-- User Reviews -->
 
-                        <div class="col-lg-6 reviews_col">
-                            <div class="tab_title reviews_title">
-                                <h4>Reviews (2)</h4>
-                            </div>
+                            <div class="col-lg-6 reviews_col">
+                                <div class="tab_title reviews_title">
+                                    <h4>Reviews (2)</h4>
+                                </div>
 
-                            <!-- User Review -->
+                                <!-- User Review -->
 
-                            <div class="user_review_container d-flex flex-column flex-sm-row">
-                                <div class="user">
-                                    <div class="user_pic"></div>
-                                    <div class="user_rating">
-                                        <ul class="star_rating">
-                                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                            <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
-                                        </ul>
+                                <div class="user_review_container d-flex flex-column flex-sm-row">
+                                    <div class="user">
+                                        <div class="user_pic"></div>
+                                        <div class="user_rating">
+                                            <ul class="star_rating">
+                                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                                <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="review">
+                                        <div class="review_date">27 Aug 2016</div>
+                                        <div class="user_name">Brandon William</div>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                                     </div>
                                 </div>
-                                <div class="review">
-                                    <div class="review_date">27 Aug 2016</div>
-                                    <div class="user_name">Brandon William</div>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                </div>
-                            </div>
 
-                            <!-- User Review -->
+                                <!-- User Review -->
 
-                            <div class="user_review_container d-flex flex-column flex-sm-row">
-                                <div class="user">
-                                    <div class="user_pic"></div>
-                                    <div class="user_rating">
-                                        <ul class="star_rating">
-                                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                            <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
-                                        </ul>
+                                <div class="user_review_container d-flex flex-column flex-sm-row">
+                                    <div class="user">
+                                        <div class="user_pic"></div>
+                                        <div class="user_rating">
+                                            <ul class="star_rating">
+                                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                                <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="review">
+                                        <div class="review_date">27 Aug 2016</div>
+                                        <div class="user_name">Brandon William</div>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                                     </div>
                                 </div>
-                                <div class="review">
-                                    <div class="review_date">27 Aug 2016</div>
-                                    <div class="user_name">Brandon William</div>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                </div>
                             </div>
+
+                            <!-- Add Review -->
+
+                            <div class="col-lg-6 add_review_col">
+
+                                <div class="add_review">
+                                    <form id="review_form" action="post">
+                                        <div>
+                                            <h1>Add Review</h1>
+                                            <input id="review_name" class="form_input input_name" type="text" name="name" placeholder="Name*" required="required" data-error="Name is required.">
+                                            <input id="review_email" class="form_input input_email" type="email" name="email" placeholder="Email*" required="required" data-error="Valid email is required.">
+                                        </div>
+                                        <div>
+                                            <h1>Your Rating:</h1>
+                                            <ul class="user_star_rating">
+                                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                                <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+                                            </ul>
+                                            <textarea id="review_message" class="input_review" name="message" placeholder="Your Review" rows="4" required data-error="Please, leave us a review."></textarea>
+                                        </div>
+                                        <div class="text-left text-sm-right">
+                                            <button id="review_submit" type="submit" class="red_button review_submit_btn trans_300" value="Submit">submit</button>
+                                        </div>
+                                    </form>
+                                </div>
+
+                            </div>
+
                         </div>
-
-                        <!-- Add Review -->
-
-                        <div class="col-lg-6 add_review_col">
-
-                            <div class="add_review">
-                                <form id="review_form" action="post">
-                                    <div>
-                                        <h1>Add Review</h1>
-                                        <input id="review_name" class="form_input input_name" type="text" name="name" placeholder="Name*" required="required" data-error="Name is required.">
-                                        <input id="review_email" class="form_input input_email" type="email" name="email" placeholder="Email*" required="required" data-error="Valid email is required.">
-                                    </div>
-                                    <div>
-                                        <h1>Your Rating:</h1>
-                                        <ul class="user_star_rating">
-                                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                            <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
-                                        </ul>
-                                        <textarea id="review_message" class="input_review" name="message" placeholder="Your Review" rows="4" required data-error="Please, leave us a review."></textarea>
-                                    </div>
-                                    <div class="text-left text-sm-right">
-                                        <button id="review_submit" type="submit" class="red_button review_submit_btn trans_300" value="Submit">submit</button>
-                                    </div>
-                                </form>
-                            </div>
-
-                        </div>
-
-                    </div>
-                </div>*@
+                    </div>*@
 
             </div>
         </div>
@@ -323,3 +320,6 @@
 
 <!-- Newsletter -->
 @Html.Partial("_Newsletter")
+
+@Scripts.Render("~/Scripts/theme/single_custom.js")
+@*@RenderSection("scripts", required: false)*@

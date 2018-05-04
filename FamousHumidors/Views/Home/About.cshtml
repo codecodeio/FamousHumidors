@@ -1,7 +1,83 @@
 ﻿@{
-    ViewBag.Title = "About";
+    ViewBag.Title = "About Famous Humidors";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
 
-<p>Use this area to provide additional information.</p>
+<link rel="stylesheet" href="/Content/plugins/themify-icons/themify-icons.css">
+<link rel="stylesheet" type="text/css" href="/Content/plugins/jquery-ui-1.12.1.custom/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="/Content/styles/single_styles.css">
+<link rel="stylesheet" type="text/css" href="/Content/styles/single_responsive.css">
+
+<div class="container single_product_container" style="border-bottom: none;">
+    <div class="row">
+        <div class="col">
+
+            <!-- Breadcrumbs -->
+
+            <div class="breadcrumbs d-flex flex-row align-items-center">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    @*<li><a href="categories.html"><i class="fa fa-angle-right" aria-hidden="true"></i> @Html.DisplayFor(modelItem => Model.BaseItem.Category)</a></li>*@
+                    <li class="active"><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i>About</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Tabs -->
+
+<div class="tabs_section_container" style="margin-top: -150px;">
+
+    <div class="container">
+        
+        <div class="row">
+            <div class="col">
+
+                <!-- Tab Description -->
+                <div id="tab_1" class="tab_container active">
+                    <div class="row">
+                        <div class="col-lg-5 desc_col">
+                            <div class="tab_text_block">
+                                <h2>Responsive</h2>
+                                <p>Responsive websites look amazing on any device.</p>
+                            </div>
+                            <div class="tab_image">
+                                <img src="~/images/emails-reponsive-grid.svg" alt="">
+                            </div>
+                            <div class="tab_text_block">
+                                <h2>Data</h2>
+                                <p>Nam tempus turpis at metus scelerisque placerat nulla deumantos solicitud felis. Pellentesque diam dolor, elementum etos lobortis des mollis ut...</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-5 offset-lg-2 desc_col">
+                            <div class="tab_image">
+                                <img src="~/images/codescreen.jpg" alt="">
+                            </div>
+                            <div class="tab_text_block">
+                                <h2>Code</h2>
+                                <p>Correctly written code is faster and infinitely easier to maintain. Anyone can deliver a beautiful website but the structure of the code determines how costly the maintenance of your software will be.</p>
+                            </div>
+                            <div class="tab_image desc_last">
+                                <img src="~/images/internetOfThings.jpg" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Benefit -->
+@Html.Partial("_Benefit")
+
+<!-- Newsletter -->
+@Html.Partial("_Newsletter")
+
+@Scripts.Render("~/Scripts/theme/single_custom.js")
+@*@RenderSection("scripts", required: false)*@

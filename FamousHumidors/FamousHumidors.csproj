@@ -253,10 +253,14 @@
     <Content Include="images\blog_1.jpg" />
     <Content Include="images\blog_2.jpg" />
     <Content Include="images\blog_3.jpg" />
+    <Content Include="images\codescreen.jpg" />
     <Content Include="images\deal_ofthe_week.png" />
     <Content Include="images\desc_1.jpg" />
     <Content Include="images\desc_2.jpg" />
     <Content Include="images\desc_3.jpg" />
+    <Content Include="images\emails-reponsive-grid.svg" />
+    <Content Include="images\hygrometer.jpg" />
+    <Content Include="images\internetOfThings.jpg" />
     <Content Include="images\map_marker.png" />
     <Content Include="images\product_1.png" />
     <Content Include="images\product_10.png" />
@@ -275,6 +279,7 @@
     <Content Include="images\single_3.jpg" />
     <Content Include="images\single_3_thumb.jpg" />
     <Content Include="images\slider_1.jpg" />
+    <Content Include="images\travelHumidor.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">

@@ -20,6 +20,18 @@ namespace FamousHumidors
             );
 
             routes.MapRoute(
+                name: "Contact",
+                url: "contact",
+                defaults: new { controller = "Home", action = "Contact", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "About",
+                url: "about",
+                defaults: new { controller = "Home", action = "About", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }

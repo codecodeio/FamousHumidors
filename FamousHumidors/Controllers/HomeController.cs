@@ -82,7 +82,7 @@ namespace FamousHumidors.Controllers
 
             var bestSellers =
               (from r in db.Products
-               where (r.pref == Humidor_Pref || r.pref == Hygrometer_Pref || r.pref == Lighter_Pref)
+               where (r.pref == Humidor_Pref || r.pref == Hygrometer_Pref || r.pref == Lighter_Pref) && r.avg_rating > 80
                orderby r.vote_count descending
                select r
               )
