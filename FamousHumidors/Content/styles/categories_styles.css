@@ -1,4 +1,4 @@
-@charset "utf-8";
+﻿@charset "utf-8";
 /* CSS Document */
 
 /******************************
@@ -1013,18 +1013,18 @@ section
 	border: solid 1px #ecedee;
 	margin-right: 16px;
 }
-.product_sorting_container_bottom .pages .page_current
-{
-	background: #fe4c50;
-	border: none;
+.product_sorting_container_bottom .pages .page_current {
+    /*background: #fe4c50;*/
+    /*border: none;*/
+    /*color: #51545f;*/
 }
 .page_current span
 {
 	color: #51545f;
 }
-.product_sorting_container_bottom .pages .page_current span
-{
-	color: #FFFFFF;
+.product_sorting_container_bottom .pages .page_current span {
+    /*color: #FFFFFF;*/
+    color: #51545f;
 }
 .page_selection
 {
