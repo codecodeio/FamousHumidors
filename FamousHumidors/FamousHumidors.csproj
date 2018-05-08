@@ -322,6 +322,7 @@
     <Content Include="images\desc_2.jpg" />
     <Content Include="images\desc_3.jpg" />
     <Content Include="images\emails-reponsive-grid.svg" />
+    <Content Include="images\humidor.png" />
     <Content Include="images\hygrometer.jpg" />
     <Content Include="images\internetOfThings.jpg" />
     <Content Include="images\map_marker.png" />

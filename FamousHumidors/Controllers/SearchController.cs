@@ -39,6 +39,19 @@ namespace FamousHumidors.Controllers
             //    })
             //    .ToPagedList(page, resultsPerPage);
 
+            Func<ItemBaseModel, Object> orderByFunc = null;
+            switch (sort)
+            {
+                default:
+                    orderByFunc = ItemBaseModel => ItemBaseModel.Name;
+                    break;
+                case "priceAsc":
+                    orderByFunc = ItemBaseModel => ItemBaseModel.Price;
+                    break;
+            }
+
+            int skip = resultsPerPage * (page - 1);
+
             var numberOfItems =
                 (from r in db.Products
                  orderby r.margin descending
@@ -52,9 +65,9 @@ namespace FamousHumidors.Controllers
                  where r.pref == Humidor_Pref
                  select r
                 )
-                .Skip(resultsPerPage * (page - 1))
+                .OrderBy(r => r.price_sort)
+                .Skip(skip)
                 .Take(resultsPerPage)
-                .OrderBy(r => r.vote_count)
                 .Select(r => new ItemBaseModel
                 {
                     Id = r.ihdnum,
@@ -68,7 +81,7 @@ namespace FamousHumidors.Controllers
                     Url = "/" + r.url_detail
                 });
 
-            var model = new SearchViewModel(items, numberOfItems, page, resultsPerPage);
+            var model = new SearchViewModel(items, numberOfItems, page, resultsPerPage, sort);
 
             return View(model);
         }

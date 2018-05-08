@@ -33,7 +33,7 @@
             <div class="sidebar">
                 <div class="sidebar_section">
                     <div class="sidebar_title">
-                        <h5>Product Category</h5>
+                        <h5>Category</h5>
                     </div>
                     <ul class="sidebar_categories">
                         <li><a href="#">Men</a></li>
@@ -121,10 +121,20 @@
                                     </li>*@
                                     <li>
                                         <span>Sort By</span>
-                                        <span class="num_sorting_text">@Html.DisplayFor(modelItem => Model.Sort)</span>
+                                        <span class="num_sorting_text">@Html.DisplayFor(modelItem => Model.SortTitle) 
+                                            @if(Model.Sort == "priceDesc" || Model.Sort == "NameDesc")
+                                            {
+                                                <i class="fa fa-arrow-down" style="float:none;" aria-hidden="true"></i> 
+                                            }
+                                            else if(Model.Sort == "priceAsc" || Model.Sort == "NameAsc")
+                                            {
+                                                <i class="fa fa-arrow-up" style="float:none;" aria-hidden="true"></i> 
+                                            }
+
+                                        </span>
                                         <i class="fa fa-angle-down"></i>
                                         <ul class="sorting_num">
-                                            <li class="num_sorting_btn"><a href="/search?page=@Model.Page&resultsPerPage=@Model.ResultsPerPage"><span>Best</span></a></li>
+                                            <li class="num_sorting_btn"><a href="/search?sort=best&page=@Model.Page&resultsPerPage=@Model.ResultsPerPage"><span>Best</span></a></li>
                                             <li class="num_sorting_btn"><a href="/search?sort=priceDesc&page=@Model.Page&resultsPerPage=@Model.ResultsPerPage"><span>Price: <i class="fa fa-arrow-down" style="float:none;" aria-hidden="true"></i></span></a></li>
                                             <li class="num_sorting_btn"><a href="/search?sort=priceAsc&page=@Model.Page&resultsPerPage=@Model.ResultsPerPage"><span>Price: <i class="fa fa-arrow-up" style="float:none;" aria-hidden="true"></i></span></a></li>
                                             <li class="num_sorting_btn"><a href="/search?sort=nameAsc&page=@Model.Page&resultsPerPage=@Model.ResultsPerPage"><span>Name: <i class="fa fa-arrow-down" style="float:none;" aria-hidden="true"></i></span></a></li>
@@ -136,9 +146,9 @@
                                         <span class="num_sorting_text">@Html.DisplayFor(modelItem => Model.ResultsPerPage)</span>
                                         <i class="fa fa-angle-down"></i>
                                         <ul class="sorting_num">
-                                            <li class="num_sorting_btn"><a href="/search?page=@Model.Page&resultsPerPage=8"><span>8</span></a></li>
-                                            <li class="num_sorting_btn"><a href="/search?page=@Model.Page&resultsPerPage=16"><span>16</span></a></li>
-                                            <li class="num_sorting_btn"><a href="/search?page=@Model.Page&resultsPerPage=24"><span>24</span></a></li>
+                                            <li class="num_sorting_btn"><a href="/search?resultsPerPage=8&page=@Model.Page&sort=@Model.Sort"><span>8</span></a></li>
+                                            <li class="num_sorting_btn"><a href="/search?resultsPerPage=16&page=@Model.Page&sort=@Model.Sort"><span>16</span></a></li>
+                                            <li class="num_sorting_btn"><a href="/search?resultsPerPage=24&page=@Model.Page&sort=@Model.Sort"><span>24</span></a></li>
                                         </ul>
                                     </li>
                                 </ul>
@@ -146,7 +156,7 @@
                                 <div class="pages d-flex flex-row align-items-center">
                                     @if(Model.Page > 1)
                                     {
-                                        <div id="next_page" class="page_next" style="padding-right:10px;"><a href="@Html.DisplayFor(modelItem => Model.PrevPageUrl)"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a></div>
+                                        <div id="next_page" class="page_next"><a href="@Html.DisplayFor(modelItem => Model.PrevPageUrl)"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a></div>
 
                                     }
                                     
@@ -239,7 +249,7 @@
                                 <div class="pages d-flex flex-row align-items-center">
                                     @if(Model.Page > 1)
                                     {
-                                        <div id="next_page" class="page_next" style="padding-right:10px;"><a href="@Html.DisplayFor(modelItem => Model.PrevPageUrl)"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a></div>
+                                        <div id="next_page" class="page_next"><a href="@Html.DisplayFor(modelItem => Model.PrevPageUrl)"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a></div>
 
                                     }
                                     

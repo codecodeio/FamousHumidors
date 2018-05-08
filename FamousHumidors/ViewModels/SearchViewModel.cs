@@ -28,13 +28,15 @@ namespace FamousHumidors.ViewModels
         public int MidPage { get; set; }
         public string MidPageUrl { get; set; }
         public string Sort { get; set; }
-
-        public SearchViewModel(IQueryable<ItemBaseModel> items, int numberOfItems, int page, int resultsPerPage)
+        public string SortTitle { get; set; }
+       
+        public SearchViewModel(IQueryable<ItemBaseModel> items, int numberOfItems, int page, int resultsPerPage, string sort)
         {
             Items = items;
             NumberOfItems = numberOfItems;
             Page = page;
             ResultsPerPage = resultsPerPage;
+            Sort = sort;
             
             CalculateParameters();
         }
@@ -98,7 +100,23 @@ namespace FamousHumidors.ViewModels
                 MidPageUrl = "/search" + "?page=" + MidPage + "&resultsPerPage=" + ResultsPerPage;
             }
 
-           Sort = "Best";
+            //sort title
+            switch (Sort)
+            {
+                default:
+                    SortTitle = "Best";
+                    break;
+                case "best":
+                    SortTitle = "Best";
+                    break;
+                case "priceAsc":
+                    SortTitle = "Price";
+                    break;
+                case "priceDesc":
+                    SortTitle = "Price";
+                    break;
+            }
+
         }
     }
 }
