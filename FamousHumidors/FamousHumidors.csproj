@@ -264,6 +264,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\HumidorModel.cs" />
     <Compile Include="Models\LighterModel.cs" />
+    <Compile Include="Models\PagingModel.cs" />
     <Compile Include="ViewModels\DetailViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="Models\ItemBaseModel.cs" />

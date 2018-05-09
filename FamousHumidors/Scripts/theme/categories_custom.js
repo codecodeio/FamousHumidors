@@ -353,7 +353,7 @@ jQuery(document).ready(function($)
 	        	{
 	        		var numSortingText = $(this).text();
 					var numFilter = ':nth-child(-n+' + numSortingText + ')';
-	        		$('.num_sorting_text').text($(this).text());
+	        		//$('.num_sorting_text').text($(this).text());
     				$('.product-grid').isotope({filter: numFilter });
 	        	});
 	        });	

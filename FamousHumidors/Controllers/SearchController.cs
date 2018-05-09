@@ -19,12 +19,143 @@ namespace FamousHumidors.Controllers
         // GET: Search
         public ActionResult Index(int page = 1, int resultsPerPage = 8, string sort = "best")
         {
-            //var model =
+            int skip = resultsPerPage * (page - 1);
+
+            var numberOfItems =
+                (from r in db.Products
+                 orderby r.margin descending
+                 where r.pref == Humidor_Pref
+                 select r
+                ).Count();
+
+            IQueryable<ItemBaseModel> items;
+            switch (sort)
+            {
+                default:
+                    items =
+                    (from r in db.Products
+                     orderby r.margin descending
+                     where r.pref == Humidor_Pref
+                     select r
+                    )
+                    .OrderBy(r => r.vote_count)
+                    .Skip(skip)
+                    .Take(resultsPerPage)
+                    .Select(r => new ItemBaseModel
+                    {
+                        Id = r.ihdnum,
+                        Name = r.name_cleaned,
+                        Brand = r.brand,
+                        BrandGroup = r.brandgroup,
+                        Image = r.image_large,
+                        Price = (double)r.price_sort,
+                        PriceMsrp = (double)r.price_srp,
+                        Category = r.category_id,
+                        Url = "/" + r.url_detail
+                    });
+                    break;
+                case "priceAsc":
+                    items =
+                       (from r in db.Products
+                        orderby r.margin descending
+                        where r.pref == Humidor_Pref
+                        select r
+                       )
+                       .OrderBy(r => r.price_sort)
+                       .Skip(skip)
+                       .Take(resultsPerPage)
+                       .Select(r => new ItemBaseModel
+                       {
+                           Id = r.ihdnum,
+                           Name = r.name_cleaned,
+                           Brand = r.brand,
+                           BrandGroup = r.brandgroup,
+                           Image = r.image_large,
+                           Price = (double)r.price_sort,
+                           PriceMsrp = (double)r.price_srp,
+                           Category = r.category_id,
+                           Url = "/" + r.url_detail
+                       });
+                    break;
+                case "priceDesc":
+                    items =
+                       (from r in db.Products
+                        orderby r.margin descending
+                        where r.pref == Humidor_Pref
+                        select r
+                       )
+                       .OrderByDescending(r => r.price_sort)
+                       .Skip(skip)
+                       .Take(resultsPerPage)
+                       .Select(r => new ItemBaseModel
+                       {
+                           Id = r.ihdnum,
+                           Name = r.name_cleaned,
+                           Brand = r.brand,
+                           BrandGroup = r.brandgroup,
+                           Image = r.image_large,
+                           Price = (double)r.price_sort,
+                           PriceMsrp = (double)r.price_srp,
+                           Category = r.category_id,
+                           Url = "/" + r.url_detail
+                       });
+                    break;
+                case "nameAsc":
+                    items =
+                       (from r in db.Products
+                        orderby r.margin descending
+                        where r.pref == Humidor_Pref
+                        select r
+                       )
+                       .OrderBy(r => r.name_cleaned)
+                       .Skip(skip)
+                       .Take(resultsPerPage)
+                       .Select(r => new ItemBaseModel
+                       {
+                           Id = r.ihdnum,
+                           Name = r.name_cleaned,
+                           Brand = r.brand,
+                           BrandGroup = r.brandgroup,
+                           Image = r.image_large,
+                           Price = (double)r.price_sort,
+                           PriceMsrp = (double)r.price_srp,
+                           Category = r.category_id,
+                           Url = "/" + r.url_detail
+                       });
+                    break;
+                case "nameDesc":
+                    items =
+                       (from r in db.Products
+                        orderby r.margin descending
+                        where r.pref == Humidor_Pref
+                        select r
+                       )
+                       .OrderByDescending(r => r.name_cleaned)
+                       .Skip(skip)
+                       .Take(resultsPerPage)
+                       .Select(r => new ItemBaseModel
+                       {
+                           Id = r.ihdnum,
+                           Name = r.name_cleaned,
+                           Brand = r.brand,
+                           BrandGroup = r.brandgroup,
+                           Image = r.image_large,
+                           Price = (double)r.price_sort,
+                           PriceMsrp = (double)r.price_srp,
+                           Category = r.category_id,
+                           Url = "/" + r.url_detail
+                       });
+                    break;
+            }
+            //items =
             //    (from r in db.Products
             //     orderby r.margin descending
             //     where r.pref == Humidor_Pref
             //     select r
             //    )
+            //    .OrderBy(r => r.price_sort)
+            //    .Skip(skip)
+            //    .Take(resultsPerPage)
             //    .Select(r => new ItemBaseModel
             //    {
             //        Id = r.ihdnum,
@@ -36,52 +167,11 @@ namespace FamousHumidors.Controllers
             //        PriceMsrp = (double)r.price_srp,
             //        Category = r.category_id,
             //        Url = "/" + r.url_detail
-            //    })
-            //    .ToPagedList(page, resultsPerPage);
+            //    });
 
-            Func<ItemBaseModel, Object> orderByFunc = null;
-            switch (sort)
-            {
-                default:
-                    orderByFunc = ItemBaseModel => ItemBaseModel.Name;
-                    break;
-                case "priceAsc":
-                    orderByFunc = ItemBaseModel => ItemBaseModel.Price;
-                    break;
-            }
-
-            int skip = resultsPerPage * (page - 1);
-
-            var numberOfItems =
-                (from r in db.Products
-                 orderby r.margin descending
-                 where r.pref == Humidor_Pref
-                 select r
-                ).Count();
-
-            var items =
-                (from r in db.Products
-                 orderby r.margin descending
-                 where r.pref == Humidor_Pref
-                 select r
-                )
-                .OrderBy(r => r.price_sort)
-                .Skip(skip)
-                .Take(resultsPerPage)
-                .Select(r => new ItemBaseModel
-                {
-                    Id = r.ihdnum,
-                    Name = r.name_cleaned,
-                    Brand = r.brand,
-                    BrandGroup = r.brandgroup,
-                    Image = r.image_large,
-                    Price = (double)r.price_sort,
-                    PriceMsrp = (double)r.price_srp,
-                    Category = r.category_id,
-                    Url = "/" + r.url_detail
-                });
-
-            var model = new SearchViewModel(items, numberOfItems, page, resultsPerPage, sort);
+            var baseUrl = "/search";
+            var pagingModel = new PagingModel(numberOfItems, page, resultsPerPage, sort, baseUrl);
+            var model = new SearchViewModel(items, pagingModel);
 
             return View(model);
         }
