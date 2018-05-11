@@ -1,4 +1,5 @@
 ﻿using FamousHumidors.Models;
+using Products;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace FamousHumidors.ViewModels
     {
         public ItemBaseModel BaseItem { get; set; }
         public Dictionary<string,string> DetailItem { get; set; }
-        
+       
         public DetailViewModel(ItemBaseModel baseItem, Dictionary<string, string> detailItem)
         {
             BaseItem = baseItem;

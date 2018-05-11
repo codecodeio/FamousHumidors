@@ -1,4 +1,5 @@
 ﻿using FamousHumidors.Models;
+using Products;
 using System;
 using System.Collections.Generic;
 using System.Linq;

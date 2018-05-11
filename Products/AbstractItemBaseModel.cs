@@ -1,32 +1,30 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Web;
-using PagedList;
+using System.Text;
 
-namespace FamousHumidors.Models
+namespace Products
 {
-    public class ItemBaseModel
+    public abstract class AbstractItemBaseModel : IProduct
     {
         public int Id { get; set; }
         public string Name { get; set; }
         public string Brand { get; set; }
         public string BrandGroup { get; set; }
         public string Image { get; set; }
-        public double Price { get; set;  }
+        public double Price { get; set; }
         public double PriceMsrp { get; set; }
         public string Category { get; set; }
         public string Url { get; set; }
         public string Description { get; set; }
         public int AverageRating { get; set; }
 
-        public ItemBaseModel()
+        public AbstractItemBaseModel()
         {
 
         }
-        public ItemBaseModel(Item item)
+
+        public AbstractItemBaseModel(Item item)
         {
             Id = item.ihdnum;
             Name = item.name_cleaned;
@@ -38,7 +36,7 @@ namespace FamousHumidors.Models
             Category = item.category_id;
             Url = "/" + item.url_detail;
             Description = item.description_item;
-            if(item.avg_rating != null)
+            if (item.avg_rating != null)
             {
                 AverageRating = (int)item.avg_rating;
             }
@@ -46,7 +44,7 @@ namespace FamousHumidors.Models
             {
                 AverageRating = 0;
             }
-           
+
         }
 
         public Dictionary<string, string> ToDictionary()

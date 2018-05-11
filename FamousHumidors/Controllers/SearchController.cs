@@ -1,11 +1,12 @@
-﻿using FamousHumidors.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using PagedList;
 using FamousHumidors.ViewModels;
+using Products;
+using FamousHumidors.Models;
 
 namespace FamousHumidors.Controllers
 {

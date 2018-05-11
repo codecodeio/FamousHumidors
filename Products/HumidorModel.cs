@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace FamousHumidors.Models
+namespace Products
 {
-    public class HumidorModel : ItemBaseModel
+    public class HumidorModel : AbstractItemBaseModel
     {
         public int Capacity { get; set; }
         public string Color { get; set; }
@@ -14,6 +14,7 @@ namespace FamousHumidors.Models
         public string Size { get; set; }
         public int Trays { get; set; }
         public bool Hygrometer { get; set; }
+
         public HumidorModel(Item item) : base(item)
         {
             

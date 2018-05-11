@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FamousHumidors", "FamousHum
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FamousHumidors.Tests", "FamousHumidors.Tests\FamousHumidors.Tests.csproj", "{5C7352DA-902B-46C6-BA69-08D3308FD6B9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Products", "Products\Products.csproj", "{94779C55-414E-4672-9A39-E011DC2F749D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{5C7352DA-902B-46C6-BA69-08D3308FD6B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5C7352DA-902B-46C6-BA69-08D3308FD6B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5C7352DA-902B-46C6-BA69-08D3308FD6B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94779C55-414E-4672-9A39-E011DC2F749D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94779C55-414E-4672-9A39-E011DC2F749D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94779C55-414E-4672-9A39-E011DC2F749D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94779C55-414E-4672-9A39-E011DC2F749D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

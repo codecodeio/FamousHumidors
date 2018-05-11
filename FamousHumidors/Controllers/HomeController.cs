@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using FamousHumidors.Models;
 using FamousHumidors.ViewModels;
+using Products;
 
 namespace FamousHumidors.Controllers
 {

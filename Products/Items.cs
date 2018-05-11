@@ -1,4 +1,5 @@
-namespace FamousHumidors.Models
+namespace Products
+
 {
     using System;
     using System.Data.Entity;
