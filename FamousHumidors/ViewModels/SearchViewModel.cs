@@ -12,11 +12,12 @@ namespace FamousHumidors.ViewModels
     {
         public IQueryable<ItemBaseModel> Items { get; set; }
         public PagingModel Paging { get; set; }
-
-        public SearchViewModel(IQueryable<ItemBaseModel> items, PagingModel paging)
+        public FilterModel Filters { get; set; }
+        public SearchViewModel(IQueryable<ItemBaseModel> items, PagingModel paging, FilterModel filters)
         {
             Items = items;
             Paging = paging;
+            Filters = filters;
         }
         
     }

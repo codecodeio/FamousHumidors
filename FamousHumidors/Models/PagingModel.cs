@@ -39,18 +39,26 @@ namespace FamousHumidors.Models
         public int MidPage { get; set; }
         public string MidPageUrl { get; set; }
         public string SortTitle { get; set; }
+        public string PagingFilters { get; set; }
 
         private void CalculateParameters()
         {
+            NumberOfPages = (int)Math.Ceiling((double)NumberOfItems / (double)ResultsPerPage);
+
+            if(Page > NumberOfPages)
+            {
+                Page = NumberOfPages;
+            }
+
             var pageFilter = "page=" + Page;
             var resultsPerPageFilter = "resultsPerPage=" + ResultsPerPage;
             var sortFilter = "sort=" + Sort;
-            var pagingFilters = pageFilter + "&" + resultsPerPageFilter + "&" + sortFilter;
+            PagingFilters = pageFilter + "&" + resultsPerPageFilter + "&" + sortFilter;
 
             //var filterUrlBase = "page=" + Page + "&resultsPerPage=" + ResultsPerPage;
             //var resultsPerPageFilterBase = "resultsPerPage=" + ResultsPerPage;
 
-            NumberOfPages = (int)Math.Ceiling((double)NumberOfItems / (double)ResultsPerPage);
+           
             FirstItem = (ResultsPerPage * (Page - 1)) + 1;
             //lastItem
             LastItem = FirstItem + ResultsPerPage - 1;
@@ -59,7 +67,7 @@ namespace FamousHumidors.Models
                 LastItem = NumberOfItems;
             }
             //url
-            Url = BaseUrl + "?" + pagingFilters;
+            Url = BaseUrl + "?" + PagingFilters;
             //first page
             FirstPage = 1;
             FirstPageUrl = BaseUrl + "?page=1" + "&" + resultsPerPageFilter + "&" + sortFilter;

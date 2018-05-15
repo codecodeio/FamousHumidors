@@ -18,6 +18,7 @@ namespace Products
         public string Url { get; set; }
         public string Description { get; set; }
         public int AverageRating { get; set; }
+        public int VoteCount { get; set; }
 
         public AbstractItemBaseModel()
         {
@@ -44,7 +45,14 @@ namespace Products
             {
                 AverageRating = 0;
             }
-
+            if (item.vote_count != null)
+            {
+                VoteCount = (int)item.vote_count;
+            }
+            else
+            {
+                VoteCount = 0;
+            }
         }
 
         public Dictionary<string, string> ToDictionary()

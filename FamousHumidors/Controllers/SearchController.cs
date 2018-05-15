@@ -18,161 +18,70 @@ namespace FamousHumidors.Controllers
         private Items db = new Items();
 
         // GET: Search
-        public ActionResult Index(int page = 1, int resultsPerPage = 8, string sort = "best")
+        public ActionResult Index(int page = 1, int resultsPerPage = 8, string sort = "best", int categoryID = 1, string price = "10")
         {
-            int skip = resultsPerPage * (page - 1);
+            //filtering
+            var filterModel = new FilterModel(categoryID, price);
 
-            var numberOfItems =
-                (from r in db.Products
-                 orderby r.margin descending
-                 where r.pref == Humidor_Pref
-                 select r
-                ).Count();
+            //category name
+            var category = filterModel.CategoryFilters[categoryID];
 
-            IQueryable<ItemBaseModel> items;
-            switch (sort)
-            {
-                default:
-                    items =
-                    (from r in db.Products
-                     orderby r.margin descending
-                     where r.pref == Humidor_Pref
-                     select r
-                    )
-                    .OrderBy(r => r.vote_count)
-                    .Skip(skip)
-                    .Take(resultsPerPage)
-                    .Select(r => new ItemBaseModel
-                    {
-                        Id = r.ihdnum,
-                        Name = r.name_cleaned,
-                        Brand = r.brand,
-                        BrandGroup = r.brandgroup,
-                        Image = r.image_large,
-                        Price = (double)r.price_sort,
-                        PriceMsrp = (double)r.price_srp,
-                        Category = r.category_id,
-                        Url = "/" + r.url_detail
-                    });
-                    break;
-                case "priceAsc":
-                    items =
-                       (from r in db.Products
-                        orderby r.margin descending
-                        where r.pref == Humidor_Pref
-                        select r
-                       )
-                       .OrderBy(r => r.price_sort)
-                       .Skip(skip)
-                       .Take(resultsPerPage)
-                       .Select(r => new ItemBaseModel
-                       {
-                           Id = r.ihdnum,
-                           Name = r.name_cleaned,
-                           Brand = r.brand,
-                           BrandGroup = r.brandgroup,
-                           Image = r.image_large,
-                           Price = (double)r.price_sort,
-                           PriceMsrp = (double)r.price_srp,
-                           Category = r.category_id,
-                           Url = "/" + r.url_detail
-                       });
-                    break;
-                case "priceDesc":
-                    items =
-                       (from r in db.Products
-                        orderby r.margin descending
-                        where r.pref == Humidor_Pref
-                        select r
-                       )
-                       .OrderByDescending(r => r.price_sort)
-                       .Skip(skip)
-                       .Take(resultsPerPage)
-                       .Select(r => new ItemBaseModel
-                       {
-                           Id = r.ihdnum,
-                           Name = r.name_cleaned,
-                           Brand = r.brand,
-                           BrandGroup = r.brandgroup,
-                           Image = r.image_large,
-                           Price = (double)r.price_sort,
-                           PriceMsrp = (double)r.price_srp,
-                           Category = r.category_id,
-                           Url = "/" + r.url_detail
-                       });
-                    break;
-                case "nameAsc":
-                    items =
-                       (from r in db.Products
-                        orderby r.margin descending
-                        where r.pref == Humidor_Pref
-                        select r
-                       )
-                       .OrderBy(r => r.name_cleaned)
-                       .Skip(skip)
-                       .Take(resultsPerPage)
-                       .Select(r => new ItemBaseModel
-                       {
-                           Id = r.ihdnum,
-                           Name = r.name_cleaned,
-                           Brand = r.brand,
-                           BrandGroup = r.brandgroup,
-                           Image = r.image_large,
-                           Price = (double)r.price_sort,
-                           PriceMsrp = (double)r.price_srp,
-                           Category = r.category_id,
-                           Url = "/" + r.url_detail
-                       });
-                    break;
-                case "nameDesc":
-                    items =
-                       (from r in db.Products
-                        orderby r.margin descending
-                        where r.pref == Humidor_Pref
-                        select r
-                       )
-                       .OrderByDescending(r => r.name_cleaned)
-                       .Skip(skip)
-                       .Take(resultsPerPage)
-                       .Select(r => new ItemBaseModel
-                       {
-                           Id = r.ihdnum,
-                           Name = r.name_cleaned,
-                           Brand = r.brand,
-                           BrandGroup = r.brandgroup,
-                           Image = r.image_large,
-                           Price = (double)r.price_sort,
-                           PriceMsrp = (double)r.price_srp,
-                           Category = r.category_id,
-                           Url = "/" + r.url_detail
-                       });
-                    break;
-            }
-            //items =
-            //    (from r in db.Products
-            //     orderby r.margin descending
-            //     where r.pref == Humidor_Pref
-            //     select r
-            //    )
-            //    .OrderBy(r => r.price_sort)
-            //    .Skip(skip)
-            //    .Take(resultsPerPage)
-            //    .Select(r => new ItemBaseModel
-            //    {
-            //        Id = r.ihdnum,
-            //        Name = r.name_cleaned,
-            //        Brand = r.brand,
-            //        BrandGroup = r.brandgroup,
-            //        Image = r.image_large,
-            //        Price = (double)r.price_sort,
-            //        PriceMsrp = (double)r.price_srp,
-            //        Category = r.category_id,
-            //        Url = "/" + r.url_detail
-            //    });
+            //db category name
+            var dbCategory = filterModel.DbCategory(categoryID);
 
+            //number of items
+            var numberOfItems = db.Products.Where(r => r.category_id.Equals(dbCategory)).Count();
+
+            //paging
             var baseUrl = "/search";
             var pagingModel = new PagingModel(numberOfItems, page, resultsPerPage, sort, baseUrl);
-            var model = new SearchViewModel(items, pagingModel);
+            //in case page requested is higher than existing number of pages
+            page = pagingModel.Page;
+
+            //skip calculation
+            int skip = resultsPerPage * (page - 1);
+
+            //select where
+            IQueryable<ItemBaseModel> items = db.Products.Select(r => new ItemBaseModel
+            {
+                Id = r.ihdnum,
+                Name = r.name_cleaned,
+                Brand = r.brand,
+                BrandGroup = r.brandgroup,
+                Image = r.image_large,
+                Price = (double)r.price_sort,
+                PriceMsrp = (double)r.price_srp,
+                Category = r.category_id,
+                Url = "/" + r.url_detail,
+                VoteCount = (int)r.vote_count
+            })
+            .Where(r => r.Category.Equals(dbCategory));
+
+            //order by
+            switch (sort)
+            {
+                case "priceAsc":
+                    items = items.OrderBy(r => r.Price).ThenBy(r => r.Name);
+                    break;
+                case "priceDesc":
+                   items = items.OrderByDescending(r => r.Price).ThenBy(r => r.Name);
+                    break;
+                case "nameAsc":
+                   items = items.OrderBy(r => r.Name).ThenBy(r => r.Price);
+                    break;
+                case "nameDesc":
+                   items = items.OrderByDescending(r => r.Name).ThenBy(r => r.Price);
+                    break;
+                default:
+                   items = items.OrderByDescending(r => r.VoteCount).ThenBy(r => r.Name);
+                    break;
+            }
+
+            //skip, take
+            items = items.Skip(skip).Take(resultsPerPage);
+
+            //view model
+            var model = new SearchViewModel(items, pagingModel, filterModel);
 
             return View(model);
         }

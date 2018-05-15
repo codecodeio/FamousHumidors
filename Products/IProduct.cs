@@ -16,6 +16,7 @@ namespace Products
         string Url { get; set; }
         string Description { get; set; }
         int AverageRating { get; set; }
+        int VoteCount { get; set; }
 
         Dictionary<string,string> ToDictionary(); 
 
