@@ -36,15 +36,15 @@
                         <h5>Category</h5>
                     </div>
                     <ul class="sidebar_categories">
-                        @for(int i=1; i <= Model.Filters.CategoryFilters.Count(); i++)
+                        @for(int i=1; i <= Model.Filters.CategoryFilters.Filters.Count(); i++)
                         {
-                            if(@Model.Filters.CategoryFilters[i] == Model.Filters.Category)
+                            if(@Model.Filters.CategoryFilters.Filters[i].Name == Model.Filters.CategoryFilters.Name)
                             {
-                                <li class="active"><a href="/search?categoryID=@i&@Model.Paging.PagingFilters"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>@Model.Filters.CategoryFilters[i]</a></li>
+                                <li class="active"><a href="/search?categoryID=@i&@Model.Paging.PagingFilters"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>@Model.Filters.CategoryFilters.Filters[i].Name</a></li>
                             }
                             else
                             {
-                                <li><a href="/search?categoryID=@i&@Model.Paging.PagingFilters">@Model.Filters.CategoryFilters[i]</a></li>
+                                <li><a href="/search?categoryID=@i&@Model.Paging.PagingFilters">@Model.Filters.CategoryFilters.Filters[i].Name (@Model.Counts["categoryCounts"][i])</a></li>
                             }
                         
                         }
@@ -70,20 +70,24 @@
                 </div>
 
                 <!-- Sizes -->
-                @*<div class="sidebar_section">
+                @if(Model.Filters.CategoryFilters.Name == "Humidors")
+                {
+                <div class="sidebar_section">
                     <div class="sidebar_title">
-                        <h5>Sizes</h5>
+                        <h5>Size</h5>
                     </div>
                     <ul class="checkboxes">
-                        <li><i class="fa fa-square-o" aria-hidden="true"></i><span>S</span></li>
-                        <li class="active"><i class="fa fa-square" aria-hidden="true"></i><span>M</span></li>
-                        <li><i class="fa fa-square-o" aria-hidden="true"></i><span>L</span></li>
-                        <li><i class="fa fa-square-o" aria-hidden="true"></i><span>XL</span></li>
-                        <li><i class="fa fa-square-o" aria-hidden="true"></i><span>XXL</span></li>
+                        <li><i class="fa fa-square-o" aria-hidden="true"></i><span>Large</span></li>
+                        <li class="active"><i class="fa fa-square" aria-hidden="true"></i><span>Medium</span></li>
+                        <li><i class="fa fa-square-o" aria-hidden="true"></i><span>Small</span></li>
+                        <li><i class="fa fa-square-o" aria-hidden="true"></i><span>Travel</span></li>
                     </ul>
-                </div>*@
+                </div>
+                }
 
                 <!-- Color -->
+                @if(Model.Filters.CategoryFilters.Name == "Lighters")
+                {
                 <div class="sidebar_section">
                     <div class="sidebar_title">
                         <h5>Color</h5>
@@ -105,7 +109,8 @@
                         <span><span>+</span>Show More</span>
                     </div>
                 </div>
-
+                }
+                
             </div>
 
             <!-- Main Content -->
@@ -146,11 +151,11 @@
                                         </span>
                                         <i class="fa fa-angle-down"></i>
                                         <ul class="sorting_num">
-                                            <li class="num_sorting_btn"><a href="/search?sort=best&page=@Model.Paging.Page&resultsPerPage=@Model.Paging.ResultsPerPage&categoryID=@Model.Filters.CategoryID"><span>Best</span></a></li>
-                                            <li class="num_sorting_btn"><a href="/search?sort=priceAsc&page=@Model.Paging.Page&resultsPerPage=@Model.Paging.ResultsPerPage&categoryID=@Model.Filters.CategoryID"><span>Price: <i class="fa fa-arrow-up" style="float:none;" aria-hidden="true"></i></span></a></li>
-                                            <li class="num_sorting_btn"><a href="/search?sort=priceDesc&page=@Model.Paging.Page&resultsPerPage=@Model.Paging.ResultsPerPage&categoryID=@Model.Filters.CategoryID"><span>Price: <i class="fa fa-arrow-down" style="float:none;" aria-hidden="true"></i></span></a></li>
-                                            <li class="num_sorting_btn"><a href="/search?sort=nameAsc&page=@Model.Paging.Page&resultsPerPage=@Model.Paging.ResultsPerPage&categoryID=@Model.Filters.CategoryID"><span>Name: <i class="fa fa-arrow-up" style="float:none;" aria-hidden="true"></i></span></a></li>
-                                            <li class="num_sorting_btn"><a href="/search?sort=nameDesc&page=@Model.Paging.Page&resultsPerPage=@Model.Paging.ResultsPerPage&categoryID=@Model.Filters.CategoryID"><span>Name: <i class="fa fa-arrow-down" style="float:none;" aria-hidden="true"></i></span></a></li>
+                                            <li class="num_sorting_btn"><a href="/search?sort=best&page=@Model.Paging.Page&resultsPerPage=@Model.Paging.ResultsPerPage&categoryID=@Model.Filters.CategoryFilters.Id"><span>Best</span></a></li>
+                                            <li class="num_sorting_btn"><a href="/search?sort=priceAsc&page=@Model.Paging.Page&resultsPerPage=@Model.Paging.ResultsPerPage&categoryID=@Model.Filters.CategoryFilters.Id"><span>Price: <i class="fa fa-arrow-up" style="float:none;" aria-hidden="true"></i></span></a></li>
+                                            <li class="num_sorting_btn"><a href="/search?sort=priceDesc&page=@Model.Paging.Page&resultsPerPage=@Model.Paging.ResultsPerPage&categoryID=@Model.Filters.CategoryFilters.Id"><span>Price: <i class="fa fa-arrow-down" style="float:none;" aria-hidden="true"></i></span></a></li>
+                                            <li class="num_sorting_btn"><a href="/search?sort=nameAsc&page=@Model.Paging.Page&resultsPerPage=@Model.Paging.ResultsPerPage&categoryID=@Model.Filters.CategoryFilters.Id"><span>Name: <i class="fa fa-arrow-up" style="float:none;" aria-hidden="true"></i></span></a></li>
+                                            <li class="num_sorting_btn"><a href="/search?sort=nameDesc&page=@Model.Paging.Page&resultsPerPage=@Model.Paging.ResultsPerPage&categoryID=@Model.Filters.CategoryFilters.Id"><span>Name: <i class="fa fa-arrow-down" style="float:none;" aria-hidden="true"></i></span></a></li>
                                         </ul>
                                     </li>
                                     <li>
@@ -158,9 +163,9 @@
                                         <span class="num_sorting_text">@Html.DisplayFor(modelItem => Model.Paging.ResultsPerPage)</span>
                                         <i class="fa fa-angle-down"></i>
                                         <ul class="sorting_num">
-                                            <li class="num_sorting_btn"><a href="/search?resultsPerPage=8&page=@Model.Paging.Page&sort=@Model.Paging.Sort&categoryID=@Model.Filters.CategoryID"><span>8</span></a></li>
-                                            <li class="num_sorting_btn"><a href="/search?resultsPerPage=16&page=@Model.Paging.Page&sort=@Model.Paging.Sort&categoryID=@Model.Filters.CategoryID"><span>16</span></a></li>
-                                            <li class="num_sorting_btn"><a href="/search?resultsPerPage=24&page=@Model.Paging.Page&sort=@Model.Paging.Sort&categoryID=@Model.Filters.CategoryID"><span>24</span></a></li>
+                                            <li class="num_sorting_btn"><a href="/search?resultsPerPage=8&page=@Model.Paging.Page&sort=@Model.Paging.Sort&categoryID=@Model.Filters.CategoryFilters.Id"><span>8</span></a></li>
+                                            <li class="num_sorting_btn"><a href="/search?resultsPerPage=16&page=@Model.Paging.Page&sort=@Model.Paging.Sort&categoryID=@Model.Filters.CategoryFilters.Id"><span>16</span></a></li>
+                                            <li class="num_sorting_btn"><a href="/search?resultsPerPage=24&page=@Model.Paging.Page&sort=@Model.Paging.Sort&categoryID=@Model.Filters.CategoryFilters.Id"><span>24</span></a></li>
                                         </ul>
                                     </li>
                                 </ul>
@@ -168,7 +173,7 @@
                                 <div class="pages d-flex flex-row align-items-center">
                                     @if(Model.Paging.Page > 1)
                                     {
-                                        <div id="next_page" class="page_next"><a href="@Html.DisplayFor(modelItem => Model.Paging.PrevPageUrl)&categoryID=@Model.Filters.CategoryID"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a></div>
+                                        <div id="next_page" class="page_next"><a href="@Html.DisplayFor(modelItem => Model.Paging.PrevPageUrl)&categoryID=@Model.Filters.CategoryFilters.Id"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a></div>
 
                                     }
                                     
@@ -178,23 +183,23 @@
                                         <ul class="page_selection">
                                             @if (Model.Paging.NextPage != Model.Paging.LastPage)
                                             {
-                                                <li><a href="@Html.DisplayFor(modelItem => Model.Paging.NextPageUrl)&categoryID=@Model.Filters.CategoryID">@Html.DisplayFor(modelItem => Model.Paging.NextPage)</a></li>
+                                                <li><a href="@Html.DisplayFor(modelItem => Model.Paging.NextPageUrl)&categoryID=@Model.Filters.CategoryFilters.Id">@Html.DisplayFor(modelItem => Model.Paging.NextPage)</a></li>
                                                 <li><a href="#">...</a></li>
                                             }
                                              
                                             @if(Model.Paging.MidPage != Model.Paging.NextPage && Model.Paging.Page != Model.Paging.LastPage && Model.Paging.MidPage != Model.Paging.Page)
                                             {
-                                                <li><a href="@Html.DisplayFor(modelItem => Model.Paging.MidPageUrl)&categoryID=@Model.Filters.CategoryID">@Html.DisplayFor(modelItem => Model.Paging.MidPage)</a></li>
+                                                <li><a href="@Html.DisplayFor(modelItem => Model.Paging.MidPageUrl)&categoryID=@Model.Filters.CategoryFilters.Id">@Html.DisplayFor(modelItem => Model.Paging.MidPage)</a></li>
                                                 <li><a href="#">...</a></li>
                                             }
-                                            <li><a href="@Html.DisplayFor(modelItem => Model.Paging.LastPageUrl)&categoryID=@Model.Filters.CategoryID">@Html.DisplayFor(modelItem => Model.Paging.LastPage)</a></li>
+                                            <li><a href="@Html.DisplayFor(modelItem => Model.Paging.LastPageUrl)&categoryID=@Model.Filters.CategoryFilters.Id">@Html.DisplayFor(modelItem => Model.Paging.LastPage)</a></li>
                                             
                                         </ul>
                                     </div>
                                     <div class="page_total"><span>of</span>@Html.DisplayFor(modelItem => Model.Paging.NumberOfPages)</div>
                                      @if (Model.Paging.Page < Model.Paging.NumberOfPages)
                                      {
-                                        <div id="next_page" class="page_next"><a href="@Html.DisplayFor(modelItem => Model.Paging.NextPageUrl)&categoryID=@Model.Filters.CategoryID"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a></div>
+                                        <div id="next_page" class="page_next"><a href="@Html.DisplayFor(modelItem => Model.Paging.NextPageUrl)&categoryID=@Model.Filters.CategoryFilters.Id"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a></div>
                                      }
                                 </div>
 
@@ -203,31 +208,34 @@
                             <!-- Product Grid -->
 
                             <div class="product-grid">
-                                @foreach (var item in Model.Items)
-                                {   
-                                    <div class="product-item men">
-                                        <div class="product discount product_filter">
-                                            <div class="product_image">
-                                                <img src="https://www.famous-smoke.com/@Html.DisplayFor(modelItem => item.Image)" alt="">
-                                            </div>
-                                            <div class="favorite favorite_left"></div>
-                                            @if(item.Price + 1 < item.PriceMsrp)
-                                            {
-                                                <div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>-$@String.Format("{0:N0}", item.PriceMsrp - item.Price)</span></div>
-                                            }
-                                            <div class="product_info">
-                                                <h6 class="product_name"><a href="@Html.DisplayFor(modelItem => item.Url)">@Html.DisplayFor(modelItem => item.Name)</a></h6>
-                                                <div class="product_price">
-                                                    $@Html.DisplayFor(modelItem => item.Price)
-                                                    @if (item.PriceMsrp >= item.Price + 1)
-                                                    {
-                                                        <span>$@Html.DisplayFor(modelItem => item.PriceMsrp)</span>
-                                                    }
+                                @if(Model.Paging.NumberOfItems > 0)
+                                {
+                                    foreach (var item in Model.Items)
+                                    {   
+                                        <div class="product-item men">
+                                            <div class="product discount product_filter">
+                                                <div class="product_image">
+                                                    <img src="https://www.famous-smoke.com/@Html.DisplayFor(modelItem => item.Image)" alt="">
+                                                </div>
+                                                <div class="favorite favorite_left"></div>
+                                                @if(item.Price + 1 < item.PriceMsrp)
+                                                {
+                                                    <div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>-$@String.Format("{0:N0}", item.PriceMsrp - item.Price)</span></div>
+                                                }
+                                                <div class="product_info">
+                                                    <h6 class="product_name"><a href="@Html.DisplayFor(modelItem => item.Url)">@Html.DisplayFor(modelItem => item.Name)</a></h6>
+                                                    <div class="product_price">
+                                                        $@Html.DisplayFor(modelItem => item.Price)
+                                                        @if (item.PriceMsrp >= item.Price + 1)
+                                                        {
+                                                            <span>$@Html.DisplayFor(modelItem => item.PriceMsrp)</span>
+                                                        }
+                                                    </div>
                                                 </div>
                                             </div>
+                                            <div class="red_button add_to_cart_button"><a href="/cart?id=@Html.DisplayFor(modelItem => item.Id)">add to cart</a></div>
                                         </div>
-                                        <div class="red_button add_to_cart_button"><a href="/cart?id=@Html.DisplayFor(modelItem => item.Id)">add to cart</a></div>
-                                    </div>
+                                    }
                                 }
 
                             </div>

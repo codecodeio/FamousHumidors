@@ -12,26 +12,37 @@ namespace FamousHumidors.Controllers
 {
     public class SearchController : Controller
     {
-        private const string Humidor_Pref = "HU";
-        private const string Hygrometer_Pref = "HY";
-        private const string Lighter_Pref = "LG";
         private Items db = new Items();
 
         // GET: Search
         public ActionResult Index(int page = 1, int resultsPerPage = 8, string sort = "best", int categoryID = 1, string price = "10")
         {
-            //filtering
-            var filterModel = new FilterModel(categoryID, price);
-
-            //category name
-            var category = filterModel.CategoryFilters[categoryID];
+            //category filters
+            var categoryFilters = new CategoryFiltersModel(categoryID);
 
             //db category name
-            var dbCategory = filterModel.DbCategory(categoryID);
+            //var dbCategory = filterModel.DbCategory(categoryID);
+
+            //category counts
+            var cat = "";
+            var count = 0;
+            var categoryCounts = new Dictionary<int, int>();
+            for (var i=1; i <= categoryFilters.Filters.Count(); i++)
+            {
+                cat = categoryFilters.Filters[i].EqualityValue;
+                count = db.Products.Where(r => r.category_id.Equals(cat)).Count();
+                categoryCounts.Add(i, count);
+            }
+            
+            //all counts
+            var counts = new Dictionary<string, Dictionary<int, int>>()
+            {
+                {"categoryCounts", categoryCounts}
+            };
 
             //number of items
-            var numberOfItems = db.Products.Where(r => r.category_id.Equals(dbCategory)).Count();
-
+            var numberOfItems = categoryCounts[categoryID];
+            
             //paging
             var baseUrl = "/search";
             var pagingModel = new PagingModel(numberOfItems, page, resultsPerPage, sort, baseUrl);
@@ -55,7 +66,7 @@ namespace FamousHumidors.Controllers
                 Url = "/" + r.url_detail,
                 VoteCount = (int)r.vote_count
             })
-            .Where(r => r.Category.Equals(dbCategory));
+            .Where(r => r.Category.Equals(categoryFilters.EqualityValue));
 
             //order by
             switch (sort)
@@ -80,8 +91,11 @@ namespace FamousHumidors.Controllers
             //skip, take
             items = items.Skip(skip).Take(resultsPerPage);
 
+            //all search filters
+            var searchFiltersModel = new SearchFiltersModel(categoryFilters);
+
             //view model
-            var model = new SearchViewModel(items, pagingModel, filterModel);
+            var model = new SearchViewModel(items, pagingModel, searchFiltersModel, counts);
 
             return View(model);
         }
