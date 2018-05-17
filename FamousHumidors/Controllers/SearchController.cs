@@ -15,13 +15,13 @@ namespace FamousHumidors.Controllers
         private Items db = new Items();
 
         // GET: Search
-        public ActionResult Index(int page = 1, int resultsPerPage = 8, string sort = "best", int categoryID = 1, string price = "10")
+        public ActionResult Index(int page = 1, int resultsPerPage = 8, string sort = "best", int categoryID = 1, int priceId = 0)
         {
             //category filters
             var categoryFilters = new CategoryFiltersModel(categoryID);
 
-            //db category name
-            //var dbCategory = filterModel.DbCategory(categoryID);
+            //price filters
+            var priceFilters = new PriceFiltersModel(priceId);
 
             //category counts
             var cat = "";
@@ -92,7 +92,7 @@ namespace FamousHumidors.Controllers
             items = items.Skip(skip).Take(resultsPerPage);
 
             //all search filters
-            var searchFiltersModel = new SearchFiltersModel(categoryFilters);
+            var searchFiltersModel = new SearchFiltersModel(categoryFilters,priceFilters);
 
             //view model
             var model = new SearchViewModel(items, pagingModel, searchFiltersModel, counts);

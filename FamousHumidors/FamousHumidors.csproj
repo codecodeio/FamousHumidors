@@ -267,7 +267,9 @@
     <Compile Include="Models\IEqualityFilters.cs" />
     <Compile Include="Models\IFilters.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\IMinMaxFilters.cs" />
     <Compile Include="Models\MinMaxFilterModel.cs" />
+    <Compile Include="Models\PriceFiltersModel.cs" />
     <Compile Include="Models\SearchFiltersModel.cs" />
     <Compile Include="Models\PagingModel.cs" />
     <Compile Include="ViewModels\DetailViewModel.cs" />
