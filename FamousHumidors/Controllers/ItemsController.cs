@@ -36,7 +36,7 @@ namespace FamousHumidors.Controllers
                  where r.pref == Humidor_Pref
                  select r
                 )
-                .Select(r => new ItemBaseModel
+                .Select(r => new ItemModel
                 {
                     Id = r.ihdnum,
                     Name = r.name_cleaned,
@@ -93,7 +93,7 @@ namespace FamousHumidors.Controllers
             }
 
             //base item
-            var baseItem = new ItemBaseModel(item);
+            var baseItem = new ItemModel(item);
 
             //default detail item
             var detailItem = new Dictionary<string,string>();

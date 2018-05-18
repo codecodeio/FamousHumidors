@@ -1,7 +1,7 @@
 ﻿@*@using PagedList;
     @using PagedList.Mvc;
     @using FamousHumidors.Models;*@
-@*@model PagedList<ItemBaseModel>*@
+@*@model PagedList<ItemModel>*@
 
 @using FamousHumidors.Models
 @using FamousHumidors.ViewModels
@@ -31,6 +31,7 @@
             <!-- Sidebar -->
 
             <div class="sidebar">
+                <!-- Category Filtering -->
                 <div class="sidebar_section">
                     <div class="sidebar_title">
                         <h5>Category</h5>
@@ -44,7 +45,7 @@
                             }
                             else
                             {
-                                <li><a href="/search?categoryID=@i&@Model.Paging.PagingFilters">@Model.Filters.CategoryFilters.Filters[i].Name (@Model.Counts["categoryCounts"][i])</a></li>
+                                <li><a href="/search?categoryID=@i&@Model.Paging.PagingFilters">@Model.Filters.CategoryFilters.Filters[i].Name (@Model.Filters.CategoryFilters.Filters[i].Count)</a></li>
                             }
                         
                         }
@@ -60,6 +61,26 @@
                 <!-- Price Range Filtering -->
                 <div class="sidebar_section">
                     <div class="sidebar_title">
+                        <h5>Price</h5>
+                    </div>
+                    <ul class="sidebar_categories">
+                        @for(int i=1; i <= Model.Filters.PriceFilters.Filters.Count(); i++)
+                        {
+                            if(@Model.Filters.PriceFilters.Filters[i].Name == @Model.Filters.PriceFilters.Name)
+                            {
+                                <li class="active"><a href="/search?categoryID=@Model.Filters.CategoryFilters.Id&@Model.Paging.PagingFilters"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>@Model.Filters.PriceFilters.Filters[i].Name</a></li>
+                            }
+                            else
+                            {
+                                <li><a href="/search?priceID=@i&categoryID=@Model.Filters.CategoryFilters.Id&@Model.Paging.PagingFilters">@Model.Filters.PriceFilters.Filters[i].Name (@Model.Filters.PriceFilters.Filters[i].Count)</a></li>
+                            }
+                        
+                        }
+                    </ul>
+                </div>
+                <!-- Price Range Filtering -->
+                @*<div class="sidebar_section">
+                    <div class="sidebar_title">
                         <h5>Filter by Price</h5>
                     </div>
                     <p>
@@ -67,7 +88,7 @@
                     </p>
                     <div id="slider-range"></div>
                     <div class="filter_button"><span>filter</span></div>
-                </div>
+                </div>*@
 
                 <!-- Sizes -->
                 @if(Model.Filters.CategoryFilters.Name == "Humidors")

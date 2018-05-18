@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Products
 {
-    public class HumidorModel : AbstractItemBaseModel
+    public class HumidorModel : AbstractItemModel
     {
         public int Capacity { get; set; }
         public string Color { get; set; }

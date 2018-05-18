@@ -6,7 +6,7 @@ using System.Web;
 
 namespace FamousHumidors.Models
 {
-    public class LighterModel : ItemBaseModel
+    public class LighterModel : ItemModel
     {
         public string Color { get; set; }
 

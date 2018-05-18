@@ -10,17 +10,15 @@ namespace FamousHumidors.ViewModels
 {
     public class SearchViewModel
     {
-        public IQueryable<ItemBaseModel> Items { get; set; }
+        public IQueryable<ItemModel> Items { get; set; }
         public PagingModel Paging { get; set; }
         public SearchFiltersModel Filters { get; set; }
-        public Dictionary<string,Dictionary<int,int>> Counts { get; set; }
-
-        public SearchViewModel(IQueryable<ItemBaseModel> items, PagingModel paging, SearchFiltersModel filters, Dictionary<string,Dictionary<int,int>> counts)
+        
+        public SearchViewModel(IQueryable<ItemModel> items, PagingModel paging, SearchFiltersModel filters)
         {
             Items = items;
             Paging = paging;
             Filters = filters;
-            Counts = counts;
         }
         
     }

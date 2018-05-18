@@ -9,10 +9,10 @@ namespace FamousHumidors.ViewModels
 {
     public class DetailViewModel
     {
-        public ItemBaseModel BaseItem { get; set; }
+        public ItemModel BaseItem { get; set; }
         public Dictionary<string,string> DetailItem { get; set; }
        
-        public DetailViewModel(ItemBaseModel baseItem, Dictionary<string, string> detailItem)
+        public DetailViewModel(ItemModel baseItem, Dictionary<string, string> detailItem)
         {
             BaseItem = baseItem;
             DetailItem = detailItem;

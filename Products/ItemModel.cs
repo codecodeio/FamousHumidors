@@ -7,7 +7,7 @@ using System.Web;
 
 namespace Products
 {
-    public class ItemModel : ItemBaseModel
+    public class ItemModel : AbstractItemModel
     {
         public ItemModel()
         {
@@ -17,6 +17,6 @@ namespace Products
         {
 
         }
-
+        
     }
 }

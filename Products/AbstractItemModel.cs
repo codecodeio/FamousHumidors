@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Products
 {
-    public abstract class AbstractItemBaseModel : IProduct
+    public abstract class AbstractItemModel : IProduct
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -20,12 +20,12 @@ namespace Products
         public int AverageRating { get; set; }
         public int VoteCount { get; set; }
 
-        public AbstractItemBaseModel()
+        public AbstractItemModel()
         {
 
         }
 
-        public AbstractItemBaseModel(Item item)
+        public AbstractItemModel(Item item)
         {
             Id = item.ihdnum;
             Name = item.name_cleaned;
