@@ -13,12 +13,13 @@ namespace FamousHumidors.ViewModels
         public IQueryable<ItemModel> Items { get; set; }
         public PagingModel Paging { get; set; }
         public SearchFiltersModel Filters { get; set; }
-        
-        public SearchViewModel(IQueryable<ItemModel> items, PagingModel paging, SearchFiltersModel filters)
+        public SortingFiltersModel Sorting { get; set; }
+        public SearchViewModel(IQueryable<ItemModel> items, PagingModel paging, SearchFiltersModel filters, SortingFiltersModel sorting)
         {
             Items = items;
             Paging = paging;
             Filters = filters;
+            Sorting = sorting;
         }
         
     }

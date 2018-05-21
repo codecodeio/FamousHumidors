@@ -6,13 +6,13 @@ using System.Web;
 
 namespace FamousHumidors.Models
 {
-    public class CategoryFiltersModel : IEqualityFilters
+    public class SortingFiltersModel : IEqualityFilters
     {
-        public CategoryFiltersModel(int id = 0)
+        public SortingFiltersModel(int id = 0)
         {
-            FilterName = "Category";
+            FilterName = "Sort By";
             Filters = DefaultFilters();
-            
+
             Name = Filters[id].Name;
             if (id > 0 && id <= Filters.Count())
             {
@@ -36,42 +36,27 @@ namespace FamousHumidors.Models
         {
             return new Dictionary<int, EqualityFilterModel>()
             {
-                { 1, new EqualityFilterModel("Humidors") },
-                { 2, new EqualityFilterModel("Hygrometers") },
-                { 3, new EqualityFilterModel("Liquids","Humidifying Liquids") },
-                { 4, new EqualityFilterModel("Lighters") },
-                { 5, new EqualityFilterModel("Cutters","Cigar Cutters") },
-                { 6, new EqualityFilterModel("Ashtrays") }
+                { 1, new EqualityFilterModel("Best","best") },
+                { 2, new EqualityFilterModel("Price","priceAsc") },
+                { 3, new EqualityFilterModel("Price","priceDesc") },
+                { 4, new EqualityFilterModel("Name","nameAsc") },
+                { 5, new EqualityFilterModel("Name","nameDesc") }
+               
             };
-            
+
         }
 
-        public void Counts(SearchFiltersModel searchFilters)
-        {
-            var itemRepository = new ItemRepository();
-
-            for (var i = 1; i <= Filters.Count(); i++)
-            {
-                var query = itemRepository.ByCategory(Filters[i].EqualityValue);
-                if (searchFilters.PriceFilters.Id != 0)
-                {
-                    query = itemRepository.ByPrice(query, searchFilters.PriceFilters.Min, searchFilters.PriceFilters.Max);
-                }
-
-                Filters[i].Count = query.Count();
-            }
-        }
-
-        public void Urls(SearchFiltersModel searchFilters, PagingModel paging, SortingFiltersModel sorting)
+        public void Urls(SearchFiltersModel searchFilters, PagingModel paging)
         {
             var url = "";
 
             for (var i = 1; i <= Filters.Count(); i++)
             {
                 //default to search url
-                url = Globals.SearchUrl;
+                url = Globals.SearchUrl + "?sortID=" + i;
+
                 //add category filter (always set)
-                url = url + "?categoryID=" + i;
+                url = url + "&categoryID=" + searchFilters.CategoryFilters.Id;
                 //add price filter
                 if (searchFilters.PriceFilters.Id != 0)
                 {
@@ -79,12 +64,10 @@ namespace FamousHumidors.Models
                 }
                 //add paging filter
                 url += "&" + paging.PagingFilters;
-                //add sorting filters
-                url += "&sortID=" + sorting.Id;
                 //set url
                 Filters[i].Url = url;
             }
-            
+
         }
     }
 }

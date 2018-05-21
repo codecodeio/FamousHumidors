@@ -60,7 +60,7 @@ namespace FamousHumidors.Models
             }
         }
 
-        public void Urls(SearchFiltersModel searchFilters, PagingModel paging)
+        public void Urls(SearchFiltersModel searchFilters, PagingModel paging, SortingFiltersModel sorting)
         {
             var url = "";
             
@@ -68,33 +68,17 @@ namespace FamousHumidors.Models
             {
                 //default to search url
                 url = Globals.SearchUrl;
+                //add category filter
+                url += "?categoryID=" + searchFilters.CategoryFilters.Id;
                 //set price filiter when not selected
                 if (searchFilters.PriceFilters.Id != i)
                 {
-                    url = url + "?priceID=" + i;
-                }
-                //add category filter
-                if (searchFilters.CategoryFilters.Id != 0)
-                {
-                    if (url == Globals.SearchUrl)
-                    {
-                        url += "?categoryID=" + searchFilters.CategoryFilters.Id;
-                    }
-                    else
-                    {
-                        url += "&categoryID=" + searchFilters.CategoryFilters.Id;
-                    }
-                    
+                    url = url + "&priceID=" + i;
                 }
                 //add paging filters
-                if (url == Globals.SearchUrl)
-                {
-                    url += "?" + paging.PagingFilters;
-                }
-                else
-                {
-                    url += "&" + paging.PagingFilters;
-                }
+                url += "&" + paging.PagingFilters;
+                //add sorting filters
+                url += "&sortID=" + sorting.Id;
                 //set url
                 Filters[i].Url = url;
             }

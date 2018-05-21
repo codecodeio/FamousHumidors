@@ -274,6 +274,7 @@
     <Compile Include="Models\SearchFiltersModel.cs" />
     <Compile Include="Models\PagingModel.cs" />
     <Compile Include="Models\SearchModel.cs" />
+    <Compile Include="Models\SortingFiltersModel.cs" />
     <Compile Include="ViewModels\DetailViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />

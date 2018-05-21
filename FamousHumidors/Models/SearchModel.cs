@@ -12,11 +12,12 @@ namespace FamousHumidors.Models
 
         public SearchFiltersModel SearchFilters { get; set; }
         public PagingModel Paging { get; set; }
-
-        public SearchModel(SearchFiltersModel searchFilters, PagingModel paging)
+        public SortingFiltersModel Sorting { get; set; }
+        public SearchModel(SearchFiltersModel searchFilters, PagingModel paging, SortingFiltersModel sorting)
         {
             SearchFilters = searchFilters;
             Paging = paging;
+            Sorting = sorting;
         }
 
         public IQueryable<ItemModel> Search()
@@ -40,7 +41,7 @@ namespace FamousHumidors.Models
             }
 
             //order by
-            switch (Paging.Sort)
+            switch (Sorting.EqualityValue)
             {
                 case "priceAsc":
                     items = items.OrderBy(r => r.Price).ThenBy(r => r.Name);
