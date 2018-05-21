@@ -7,14 +7,20 @@ namespace FamousHumidors.Models
 {
     public class PagingModel
     {
-        public PagingModel(int numberOfItems, int page, int resultsPerPage, string sort, string baseUrl)
+        public PagingModel(int numberOfItems, int page, int resultsPerPage, string sort)
         {
             NumberOfItems = numberOfItems;
-            Page = page;
+            if (page == 0)
+            {
+                Page = 1;
+            }
+            else
+            {
+                Page = page;
+            }
             ResultsPerPage = resultsPerPage;
             Sort = sort;
-            BaseUrl = baseUrl;
-
+            
             CalculateParameters();
         }
         //input parameters
@@ -22,7 +28,7 @@ namespace FamousHumidors.Models
         public int Page { get; set; }
         public int ResultsPerPage { get; set; }
         public string Sort { get; set; }
-        public string BaseUrl { get; set; }
+       
         //calculated parameters
         public int NumberOfPages { get; set; }
         public int FirstItem { get; set; }
@@ -45,7 +51,7 @@ namespace FamousHumidors.Models
         {
             NumberOfPages = (int)Math.Ceiling((double)NumberOfItems / (double)ResultsPerPage);
 
-            if(Page > NumberOfPages)
+            if(Page > NumberOfPages && NumberOfPages > 0)
             {
                 Page = NumberOfPages;
             }
@@ -67,29 +73,33 @@ namespace FamousHumidors.Models
                 LastItem = NumberOfItems;
             }
             //url
-            Url = BaseUrl + "?" + PagingFilters;
+            Url = Globals.SearchUrl + "?" + PagingFilters;
             //first page
             FirstPage = 1;
-            FirstPageUrl = BaseUrl + "?page=1" + "&" + resultsPerPageFilter + "&" + sortFilter;
+            FirstPageUrl = Globals.SearchUrl + "?page=1" + "&" + resultsPerPageFilter + "&" + sortFilter;
             //next page url
             NextPage = 1;
             NextPageUrl = FirstPageUrl;
             if (NumberOfPages > Page)
             {
                 NextPage = Page + 1;
-                NextPageUrl = BaseUrl + "?page=" + NextPage + "&" + resultsPerPageFilter + "&" + sortFilter;
+                NextPageUrl = Globals.SearchUrl + "?page=" + NextPage + "&" + resultsPerPageFilter + "&" + sortFilter;
             }
             //previous page
             PrevPageUrl = "";
             PrevPage = Page - 1;
-            if (PrevPage < 1)
+            if (PrevPage == 0)
             {
                 PrevPage = 1;
             }
-            PrevPageUrl = BaseUrl + "?page=" + PrevPage + "&" + resultsPerPageFilter + "&" + sortFilter;
+            PrevPageUrl = Globals.SearchUrl + "?page=" + PrevPage + "&" + resultsPerPageFilter + "&" + sortFilter;
             //last page
             LastPage = NumberOfPages;
-            LastPageUrl = BaseUrl + "?page=" + NumberOfPages + "&" + resultsPerPageFilter + "&" + sortFilter;
+            if (LastPage == 0)
+            {
+                LastPage = 1;
+            }
+            LastPageUrl = Globals.SearchUrl + "?page=" + LastPage + "&" + resultsPerPageFilter + "&" + sortFilter;
             if (Page == NumberOfPages)
             {
                 LastPage = PrevPage;
@@ -108,8 +118,18 @@ namespace FamousHumidors.Models
                 {
                     MidPage = (int)Math.Floor((((double)NumberOfPages - Page) / 2) + Page);
                 }
+                if (MidPage == 0)
+                {
+                    MidPage = 1;
+                }
 
-                MidPageUrl = BaseUrl + "?page=" + MidPage + "&resultsPerPage=" + ResultsPerPage;
+                MidPageUrl = Globals.SearchUrl + "?page=" + MidPage + "&resultsPerPage=" + ResultsPerPage;
+            }
+
+            //Urls require page = 1 but display should show page 0.
+            if (NumberOfPages == 0)
+            {
+                Page = NumberOfPages;
             }
 
             //sort title

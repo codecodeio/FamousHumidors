@@ -12,9 +12,8 @@ namespace FamousHumidors.Controllers
 {
     public class SearchController : Controller
     {
-        private Items db = new Items();
         private ItemRepository itemRepository = new ItemRepository();
-
+       
         // GET: Search
         public ActionResult Index(int page = 1, int resultsPerPage = 8, string sort = "best", int categoryID = 1, int priceID = 0)
         {
@@ -29,15 +28,21 @@ namespace FamousHumidors.Controllers
 
             //category counts
             categoryFilters.Counts(searchFilters);
-            
+           
             //price counts
             priceFilters.Counts(searchFilters);
-            
+
             //number of items
             var numberOfItems = categoryFilters.Filters[categoryFilters.Id].Count;
             
             //paging
-            var paging = new PagingModel(numberOfItems, page, resultsPerPage, sort, "/search");
+            var paging = new PagingModel(numberOfItems, page, resultsPerPage, sort);
+            
+            //category filter urls
+            categoryFilters.Urls(searchFilters, paging);
+
+            //price filter urls
+            priceFilters.Urls(searchFilters, paging);
 
             //search
             IQueryable<ItemModel> items = new SearchModel(searchFilters,paging).Search();

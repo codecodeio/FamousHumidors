@@ -61,5 +61,28 @@ namespace FamousHumidors.Models
                 Filters[i].Count = query.Count();
             }
         }
+
+        public void Urls(SearchFiltersModel searchFilters, PagingModel paging)
+        {
+            var url = "";
+
+            for (var i = 1; i <= Filters.Count(); i++)
+            {
+                //default to search url
+                url = Globals.SearchUrl;
+                //add category filter (always set)
+                url = url + "?categoryID=" + i;
+                //add price filter
+                if (searchFilters.PriceFilters.Id != 0)
+                {
+                    url += "&priceID=" + searchFilters.PriceFilters.Id;
+                }
+                //add paging filter
+                url += "&" + paging.PagingFilters;
+                //set url
+                Filters[i].Url = url;
+            }
+            
+        }
     }
 }

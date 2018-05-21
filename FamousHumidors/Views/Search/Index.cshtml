@@ -41,11 +41,11 @@
                         {
                             if(@Model.Filters.CategoryFilters.Filters[i].Name == Model.Filters.CategoryFilters.Name)
                             {
-                                <li class="active"><a href="/search?categoryID=@i&@Model.Paging.PagingFilters"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>@Model.Filters.CategoryFilters.Filters[i].Name</a></li>
+                                <li class="active"><a href="@Model.Filters.CategoryFilters.Filters[i].Url"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>@Model.Filters.CategoryFilters.Filters[i].Name</a></li>
                             }
                             else
                             {
-                                <li><a href="/search?categoryID=@i&@Model.Paging.PagingFilters">@Model.Filters.CategoryFilters.Filters[i].Name (@Model.Filters.CategoryFilters.Filters[i].Count)</a></li>
+                                <li><a href="@Model.Filters.CategoryFilters.Filters[i].Url">@Model.Filters.CategoryFilters.Filters[i].Name (@Model.Filters.CategoryFilters.Filters[i].Count)</a></li>
                             }
                         
                         }
@@ -68,11 +68,11 @@
                         {
                             if(@Model.Filters.PriceFilters.Filters[i].Name == @Model.Filters.PriceFilters.Name)
                             {
-                                <li class="active"><a href="/search?categoryID=@Model.Filters.CategoryFilters.Id&@Model.Paging.PagingFilters"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>@Model.Filters.PriceFilters.Filters[i].Name</a></li>
+                                <li class="active"><a href="@Model.Filters.PriceFilters.Filters[i].Url"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>@Model.Filters.PriceFilters.Filters[i].Name</a></li>
                             }
                             else
                             {
-                                <li><a href="/search?priceID=@i&categoryID=@Model.Filters.CategoryFilters.Id&@Model.Paging.PagingFilters">@Model.Filters.PriceFilters.Filters[i].Name (@Model.Filters.PriceFilters.Filters[i].Count)</a></li>
+                                <li><a href="@Model.Filters.PriceFilters.Filters[i].Url">@Model.Filters.PriceFilters.Filters[i].Name (@Model.Filters.PriceFilters.Filters[i].Count)</a></li>
                             }
                         
                         }
