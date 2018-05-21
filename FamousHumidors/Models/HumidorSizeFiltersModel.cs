@@ -6,23 +6,24 @@ using System.Web;
 
 namespace FamousHumidors.Models
 {
-    public class CategoryFiltersModel : IEqualityFilters
+    public class HumidorSizeFiltersModel : IEqualityFilters
     {
-        public CategoryFiltersModel(int id = 0)
+        public HumidorSizeFiltersModel(int id = 0)
         {
-            FilterName = "Category";
+            FilterName = "Size";
             Filters = DefaultFilters();
-            
-            Name = Filters[id].Name;
+
             if (id > 0 && id <= Filters.Count())
             {
                 Id = id;
+                Name = Filters[id].Name;
                 EqualityValue = Filters[id].EqualityValue;
             }
             else
             {
-                Id = 1;
-                EqualityValue = Filters[id].EqualityValue;
+                Id = 0;
+                Name = "";
+                EqualityValue = "";
             }
         }
 
@@ -36,14 +37,12 @@ namespace FamousHumidors.Models
         {
             return new Dictionary<int, EqualityFilterModel>()
             {
-                { 1, new EqualityFilterModel("Humidors") },
-                { 2, new EqualityFilterModel("Hygrometers") },
-                { 3, new EqualityFilterModel("Liquids","Humidifying Liquids") },
-                { 4, new EqualityFilterModel("Lighters") },
-                { 5, new EqualityFilterModel("Cutters","Cigar Cutters") },
-                { 6, new EqualityFilterModel("Ashtrays") }
+                { 1, new EqualityFilterModel("Large","large") },
+                { 2, new EqualityFilterModel("Medium","medium") },
+                { 3, new EqualityFilterModel("Small","small") },
+                { 4, new EqualityFilterModel("Travel","travel") }
             };
-            
+
         }
 
         public void Counts(SearchFiltersModel searchFilters)
@@ -52,17 +51,8 @@ namespace FamousHumidors.Models
 
             for (var i = 1; i <= Filters.Count(); i++)
             {
-                IQueryable<Item> query;
-                if (Filters[i].Name == "Humidors" && searchFilters.HumidorSizeFilters.Id != 0)
-                {
-                    query = itemRepository.ByHumidorSize(searchFilters.HumidorSizeFilters.Name);
-                    query = itemRepository.ByCategory(query, Filters[i].EqualityValue);
-                }
-                else
-                {
-                    query = itemRepository.ByCategory(Filters[i].EqualityValue);
-                }
-                
+                var query = itemRepository.ByHumidorSize(Filters[i].EqualityValue);
+                query = itemRepository.ByCategory(query, searchFilters.CategoryFilters.Name);
                 if (searchFilters.PriceFilters.Id != 0)
                 {
                     query = itemRepository.ByPrice(query, searchFilters.PriceFilters.Min, searchFilters.PriceFilters.Max);
@@ -81,25 +71,25 @@ namespace FamousHumidors.Models
                 //default to search url
                 url = Globals.SearchUrl;
                 //add category filter (always set)
-                url = url + "?categoryID=" + i;
+                url +=  "?categoryID=" + searchFilters.CategoryFilters.Id;
+                //set humidor size filter when not selected
+                if (searchFilters.HumidorSizeFilters.Id != i)
+                {
+                    url += "&humidorSizeID=" + i;
+                }
                 //add price filter
                 if (searchFilters.PriceFilters.Id != 0)
                 {
                     url += "&priceID=" + searchFilters.PriceFilters.Id;
                 }
-                //add humidor size filter
-                if (Filters[i].Name == "Humidors" && searchFilters.HumidorSizeFilters.Id != 0)
-                {
-                    url += "&humidorSizeID=" + searchFilters.HumidorSizeFilters.Id;
-                }
                 //add paging filter
                 url += "&" + paging.PagingFilters;
-                //add sorting filters
+                //add sorting filter
                 url += "&sortID=" + sorting.Id;
                 //set url
                 Filters[i].Url = url;
             }
-            
+
         }
     }
 }

@@ -40,6 +40,11 @@ namespace Products
             return query.Where(r => (r.Price >= min && r.Price <= max));
         }
 
+        public IQueryable<Item> ByHumidorSize(string size)
+        {
+            return db.Products.Where(r => r.humidor_size == size);
+        }
+        
         public IQueryable<ItemModel> AsItemModel()
         {
             return db.Products.Select(r => new ItemModel
@@ -55,6 +60,25 @@ namespace Products
                 Url = "/" + r.url_detail,
                 VoteCount = (int)r.vote_count
             });
+        }
+
+        public IQueryable<ItemModel> AsItemModelByHumidorSize(string size)
+        {
+            return db.Products
+                .Where(r => r.humidor_size == size)
+                .Select(r => new ItemModel
+                {
+                    Id = r.ihdnum,
+                    Name = r.name_cleaned,
+                    Brand = r.brand,
+                    BrandGroup = r.brandgroup,
+                    Image = r.image_large,
+                    Price = (double)r.price_sort,
+                    PriceMsrp = (double)r.price_srp,
+                    Category = r.category_id,
+                    Url = "/" + r.url_detail,
+                    VoteCount = (int)r.vote_count
+                });
         }
     }
 }

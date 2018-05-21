@@ -28,9 +28,20 @@ namespace FamousHumidors.Models
             //skip calculation
             int skip = Paging.ResultsPerPage * (page - 1);
 
-            //search items
-            IQueryable<ItemModel> items = itemRepository.AsItemModel();
+            IQueryable<ItemModel> items;
 
+            //filter by humidor size
+            if (SearchFilters.CategoryFilters.Name == "Humidors" && SearchFilters.HumidorSizeFilters.Id != 0)
+            {
+                items = itemRepository.AsItemModelByHumidorSize(SearchFilters.HumidorSizeFilters.EqualityValue);
+            }
+            //search items
+            else
+            {
+                //IQueryable<ItemModel> items = itemRepository.AsItemModel();
+                items = itemRepository.AsItemModel();
+            }
+            
             //filter by category
             items = itemRepository.ByCategory(items, SearchFilters.CategoryFilters.EqualityValue);
             

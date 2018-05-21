@@ -53,7 +53,17 @@ namespace FamousHumidors.Models
             var itemRepository = new ItemRepository();
             for (var i = 1; i <= Filters.Count(); i++)
             {
-                var query = itemRepository.ByPrice(Filters[i].Min, Filters[i].Max);
+                IQueryable<Item> query;
+                if (searchFilters.CategoryFilters.Name == "Humidors" && searchFilters.HumidorSizeFilters.Id != 0)
+                {
+                    query = itemRepository.ByHumidorSize(searchFilters.HumidorSizeFilters.Name);
+                    query = itemRepository.ByPrice(query,Filters[i].Min, Filters[i].Max);
+                }
+                else
+                {
+                    query = itemRepository.ByPrice(Filters[i].Min, Filters[i].Max);
+                }
+                
                 query = itemRepository.ByCategory(query, searchFilters.CategoryFilters.EqualityValue);
 
                 Filters[i].Count = query.Count();
@@ -70,10 +80,15 @@ namespace FamousHumidors.Models
                 url = Globals.SearchUrl;
                 //add category filter
                 url += "?categoryID=" + searchFilters.CategoryFilters.Id;
-                //set price filiter when not selected
+                //set price filter when not selected
                 if (searchFilters.PriceFilters.Id != i)
                 {
                     url = url + "&priceID=" + i;
+                }
+                //add humidor size filter
+                if (Filters[i].Name == "Humidors" && searchFilters.HumidorSizeFilters.Id != 0)
+                {
+                    url += "&humidorSizeID=" + searchFilters.HumidorSizeFilters.Id;
                 }
                 //add paging filters
                 url += "&" + paging.PagingFilters;

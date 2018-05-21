@@ -265,6 +265,7 @@
     <Compile Include="Models\EqualityFilterModel.cs" />
     <Compile Include="Models\FilterModel.cs" />
     <Compile Include="Models\Globals.cs" />
+    <Compile Include="Models\HumidorSizeFiltersModel.cs" />
     <Compile Include="Models\IEqualityFilters.cs" />
     <Compile Include="Models\IFilters.cs" />
     <Compile Include="Models\AccountViewModels.cs" />

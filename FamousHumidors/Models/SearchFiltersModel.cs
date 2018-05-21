@@ -7,16 +7,18 @@ namespace FamousHumidors.Models
 {
     public class SearchFiltersModel
     {
-        public SearchFiltersModel(CategoryFiltersModel categoryFilters, PriceFiltersModel priceFilters)
+        public SearchFiltersModel(CategoryFiltersModel categoryFilters, PriceFiltersModel priceFilters, HumidorSizeFiltersModel humidorSizeFilters)
         {
             CategoryFilters = categoryFilters;
             PriceFilters = priceFilters;
+            HumidorSizeFilters = humidorSizeFilters;
             
             CalculateFiltersUrl();
         }
 
         public CategoryFiltersModel CategoryFilters { get; set; }
         public PriceFiltersModel PriceFilters { get; set; }
+        public HumidorSizeFiltersModel HumidorSizeFilters { get; set; }
         public string FiltersUrl { get; set; }
 
         private void CalculateFiltersUrl()
@@ -27,14 +29,12 @@ namespace FamousHumidors.Models
             
             if (PriceFilters.Id != 0)
             {
-                if(FiltersUrl != "")
-                {
-                    FiltersUrl += "&priceID=" + PriceFilters.Id;
-                }
-                else
-                {
-                    FiltersUrl += "priceID=" + PriceFilters.Id;
-                }
+                FiltersUrl += "&priceID=" + PriceFilters.Id;
+            }
+
+            if (CategoryFilters.Name == "Humidors" && HumidorSizeFilters.Id != 0)
+            {
+                FiltersUrl += "&humidorSizeID=" + HumidorSizeFilters.Id;
             }
         }
     }
