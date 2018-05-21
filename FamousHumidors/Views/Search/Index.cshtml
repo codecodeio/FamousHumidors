@@ -196,9 +196,9 @@
                                         <span class="num_sorting_text">@Html.DisplayFor(modelItem => Model.Paging.ResultsPerPage)</span>
                                         <i class="fa fa-angle-down"></i>
                                         <ul class="sorting_num">
-                                            <li class="num_sorting_btn"><a href="/search?resultsPerPage=8&page=@Model.Paging.Page&categoryID=@Model.Filters.CategoryFilters.Id"><span>8</span></a></li>
-                                            <li class="num_sorting_btn"><a href="/search?resultsPerPage=16&page=@Model.Paging.Page&categoryID=@Model.Filters.CategoryFilters.Id"><span>16</span></a></li>
-                                            <li class="num_sorting_btn"><a href="/search?resultsPerPage=24&page=@Model.Paging.Page&categoryID=@Model.Filters.CategoryFilters.Id"><span>24</span></a></li>
+                                            <li class="num_sorting_btn"><a href="@Model.Paging.ResultsPerPageUrls[8]"><span>8</span></a></li>
+                                            <li class="num_sorting_btn"><a href="@Model.Paging.ResultsPerPageUrls[16]"><span>16</span></a></li>
+                                            <li class="num_sorting_btn"><a href="@Model.Paging.ResultsPerPageUrls[24]"><span>24</span></a></li>
                                         </ul>
                                     </li>
                                 </ul>

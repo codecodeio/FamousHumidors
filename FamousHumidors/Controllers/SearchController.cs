@@ -39,7 +39,7 @@ namespace FamousHumidors.Controllers
             var numberOfItems = categoryFilters.Filters[categoryFilters.Id].Count;
 
             //paging
-            var paging = new PagingModel(numberOfItems, page, resultsPerPage, searchFilters);
+            var paging = new PagingModel(numberOfItems, page, resultsPerPage, searchFilters, sortingFilters);
             
             //category filter urls
             categoryFilters.Urls(searchFilters, paging, sortingFilters);
