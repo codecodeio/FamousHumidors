@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FamousHumidors;
 using FamousHumidors.Controllers;
+using Products;
 
 namespace FamousHumidors.Tests.Controllers
 {

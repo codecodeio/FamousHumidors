@@ -12,61 +12,65 @@ namespace FamousHumidors.Controllers
 {
     public class SearchController : Controller
     {
-        private ItemRepository itemRepository = new ItemRepository();
+        //private ItemRepository itemRepository = new ItemRepository();
        
         // GET: Search
         public ActionResult Index(int page = 1, int resultsPerPage = 8, int sortID = 1, int categoryID = 1, int priceID = 0, int humidorSizeID = 0)
         {
-            //category filters
-            var categoryFilters = new CategoryFiltersModel(categoryID);
+            var searchModel = new SearchModel(page, resultsPerPage, sortID, categoryID, priceID, humidorSizeID);
 
-            //price filters
-            var priceFilters = new PriceFiltersModel(priceID);
+            SearchViewModel model = searchModel.Search();
 
-            //humidor size filters
-            var humidorSizeFilters = new HumidorSizeFiltersModel(humidorSizeID);
+            ////category filters
+            //var categoryFilters = new CategoryFiltersModel(categoryID);
 
-            //sorting filters
-            var sortingFilters = new SortingFiltersModel(sortID);
+            ////price filters
+            //var priceFilters = new PriceFiltersModel(priceID);
 
-            //all search filters
-            var searchFilters = new SearchFiltersModel(categoryFilters, priceFilters, humidorSizeFilters);
+            ////humidor size filters
+            //var humidorSizeFilters = new HumidorSizeFiltersModel(humidorSizeID);
 
-            //category counts
-            categoryFilters.Counts(searchFilters);
+            ////sorting filters
+            //var sortingFilters = new SortingFiltersModel(sortID);
+
+            ////all search filters
+            //var searchFilters = new SearchFiltersModel(categoryFilters, priceFilters, humidorSizeFilters);
+
+            ////category counts
+            //categoryFilters.Counts(searchFilters);
            
-            //price counts
-            priceFilters.Counts(searchFilters);
+            ////price counts
+            //priceFilters.Counts(searchFilters);
 
-            //humidor size counts
-            if(categoryFilters.Name == "Humidors")
-            {
-                humidorSizeFilters.Counts(searchFilters);
-            }
+            ////humidor size counts
+            //if(categoryFilters.Name == "Humidors")
+            //{
+            //    humidorSizeFilters.Counts(searchFilters);
+            //}
             
-            //number of items
-            var numberOfItems = categoryFilters.Filters[categoryFilters.Id].Count;
+            ////number of items
+            //var numberOfItems = categoryFilters.Filters[categoryFilters.Id].Count;
 
-            //paging
-            var paging = new PagingModel(numberOfItems, page, resultsPerPage, searchFilters, sortingFilters);
+            ////paging
+            //var paging = new PagingModel(numberOfItems, page, resultsPerPage, searchFilters, sortingFilters);
             
-            //category filter urls
-            categoryFilters.Urls(searchFilters, paging, sortingFilters);
+            ////category filter urls
+            //categoryFilters.Urls(searchFilters, paging, sortingFilters);
 
-            //price filter urls
-            priceFilters.Urls(searchFilters, paging, sortingFilters);
+            ////price filter urls
+            //priceFilters.Urls(searchFilters, paging, sortingFilters);
 
-            //humidor size filter urls
-            humidorSizeFilters.Urls(searchFilters, paging, sortingFilters);
+            ////humidor size filter urls
+            //humidorSizeFilters.Urls(searchFilters, paging, sortingFilters);
 
-            //sorting urls
-            sortingFilters.Urls(searchFilters, paging);
+            ////sorting urls
+            //sortingFilters.Urls(searchFilters, paging);
 
-            //search
-            IQueryable<ItemModel> items = new SearchModel(searchFilters,paging,sortingFilters).Search();
+            ////search
+            //IQueryable<ItemModel> items = new SearchModel(searchFilters,paging,sortingFilters).Search();
 
-            //view model
-            var model = new SearchViewModel(items, paging, searchFilters, sortingFilters);
+            ////view model
+            //var model = new SearchViewModel(items, paging, searchFilters, sortingFilters);
 
             return View(model);
         }

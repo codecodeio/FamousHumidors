@@ -1,4 +1,5 @@
-﻿using Products;
+﻿using FamousHumidors.ViewModels;
+using Products;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,30 +11,97 @@ namespace FamousHumidors.Models
     {
         private ItemRepository itemRepository = new ItemRepository();
 
-        public SearchFiltersModel SearchFilters { get; set; }
-        public PagingModel Paging { get; set; }
-        public SortingFiltersModel Sorting { get; set; }
-        public SearchModel(SearchFiltersModel searchFilters, PagingModel paging, SortingFiltersModel sorting)
+        public int Page { get; set; }
+        public int ResultsPerPage { get; set; }
+        public int SortID { get; set; }
+        public int CategoryID { get; set; }
+        public int PriceID { get; set; }
+        public int HumidorSizeID { get; set; }
+
+        //public SearchFiltersModel SearchFilters { get; set; }
+        //public PagingModel Paging { get; set; }
+        //public SortingFiltersModel Sorting { get; set; }
+
+        public SearchModel(int page = 1, int resultsPerPage = 8, int sortID = 1, int categoryID = 1, int priceID = 0, int humidorSizeID = 0)
         {
-            SearchFilters = searchFilters;
-            Paging = paging;
-            Sorting = sorting;
+            Page = page;
+            ResultsPerPage = resultsPerPage;
+            SortID = sortID;
+            CategoryID = categoryID;
+            PriceID = priceID;
+            HumidorSizeID = humidorSizeID;
         }
 
-        public IQueryable<ItemModel> Search()
+        public SearchViewModel Search()
+        {
+            //category filters
+            var categoryFilters = new CategoryFiltersModel(CategoryID);
+
+            //price filters
+            var priceFilters = new PriceFiltersModel(PriceID);
+
+            //humidor size filters
+            var humidorSizeFilters = new HumidorSizeFiltersModel(HumidorSizeID);
+
+            //sorting filters
+            var sortingFilters = new SortingFiltersModel(SortID);
+
+            //all search filters
+            var searchFilters = new SearchFiltersModel(categoryFilters, priceFilters, humidorSizeFilters);
+
+            //category counts
+            categoryFilters.Counts(searchFilters);
+
+            //price counts
+            priceFilters.Counts(searchFilters);
+
+            //humidor size counts
+            if (categoryFilters.Name == "Humidors")
+            {
+                humidorSizeFilters.Counts(searchFilters);
+            }
+
+            //number of items
+            var numberOfItems = categoryFilters.Filters[categoryFilters.Id].Count;
+
+            //paging
+            var paging = new PagingModel(numberOfItems, Page, ResultsPerPage, searchFilters, sortingFilters);
+
+            //category filter urls
+            categoryFilters.Urls(searchFilters, paging, sortingFilters);
+
+            //price filter urls
+            priceFilters.Urls(searchFilters, paging, sortingFilters);
+
+            //humidor size filter urls
+            humidorSizeFilters.Urls(searchFilters, paging, sortingFilters);
+
+            //sorting urls
+            sortingFilters.Urls(searchFilters, paging);
+
+            //search
+            IQueryable<ItemModel> items = SearchResults(searchFilters, paging, sortingFilters);
+
+            //view model
+            var model = new SearchViewModel(items, paging, searchFilters, sortingFilters);
+
+            return model;
+        }
+
+        public IQueryable<ItemModel> SearchResults(SearchFiltersModel searchFilters, PagingModel paging, SortingFiltersModel sorting)
         {
             //in case page requested is higher than existing number of pages
-            var page = Paging.Page;
+            var page = paging.Page;
 
             //skip calculation
-            int skip = Paging.ResultsPerPage * (page - 1);
+            int skip = paging.ResultsPerPage * (page - 1);
 
             IQueryable<ItemModel> items;
 
             //filter by humidor size
-            if (SearchFilters.CategoryFilters.Name == "Humidors" && SearchFilters.HumidorSizeFilters.Id != 0)
+            if (searchFilters.CategoryFilters.Name == "Humidors" && searchFilters.HumidorSizeFilters.Id != 0)
             {
-                items = itemRepository.AsItemModelByHumidorSize(SearchFilters.HumidorSizeFilters.EqualityValue);
+                items = itemRepository.AsItemModelByHumidorSize(searchFilters.HumidorSizeFilters.EqualityValue);
             }
             //search items
             else
@@ -43,16 +111,16 @@ namespace FamousHumidors.Models
             }
             
             //filter by category
-            items = itemRepository.ByCategory(items, SearchFilters.CategoryFilters.EqualityValue);
+            items = itemRepository.ByCategory(items, searchFilters.CategoryFilters.EqualityValue);
             
             //filter by price
-            if (SearchFilters.PriceFilters.Id != 0)
+            if (searchFilters.PriceFilters.Id != 0)
             {
-                items = itemRepository.ByPrice(items, SearchFilters.PriceFilters.Min, SearchFilters.PriceFilters.Max);
+                items = itemRepository.ByPrice(items, searchFilters.PriceFilters.Min, searchFilters.PriceFilters.Max);
             }
 
             //order by
-            switch (Sorting.EqualityValue)
+            switch (sorting.EqualityValue)
             {
                 case "priceAsc":
                     items = items.OrderBy(r => r.Price).ThenBy(r => r.Name);
@@ -72,7 +140,7 @@ namespace FamousHumidors.Models
             }
 
             //skip, take
-            items = items.Skip(skip).Take(Paging.ResultsPerPage);
+            items = items.Skip(skip).Take(paging.ResultsPerPage);
 
             return items;
         }
