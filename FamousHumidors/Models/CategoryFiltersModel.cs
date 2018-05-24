@@ -53,7 +53,12 @@ namespace FamousHumidors.Models
                 IQueryable<Item> query;
                 if (Filters[i].Name == "Humidors" && searchFilters.HumidorSizeFilters.Id != 0)
                 {
-                    query = itemRepository.ByHumidorSize(searchFilters.HumidorSizeFilters.Name);
+                    query = itemRepository.ByHumidorSize(searchFilters.HumidorSizeFilters.EqualityValue);
+                    query = itemRepository.ByCategory(query, Filters[i].EqualityValue);
+                }
+                else if (Filters[i].Name == "Lighters" && searchFilters.ColorFilters.Id != 0)
+                {
+                    query = itemRepository.ByColor(searchFilters.ColorFilters.EqualityValue);
                     query = itemRepository.ByCategory(query, Filters[i].EqualityValue);
                 }
                 else

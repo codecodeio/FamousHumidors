@@ -56,8 +56,9 @@ namespace FamousHumidors.Tests
             int categoryID = 1;
             int priceID = 0;
             int humidorSizeID = 0;
+            int colorID = 0;
             //Act
-            var search = new SearchModel(page, resultsPerPage, sortID, categoryID, priceID, humidorSizeID);
+            var search = new SearchModel(page, resultsPerPage, sortID, categoryID, priceID, humidorSizeID, colorID);
             var result = search.Search();
             // Assert
             Assert.IsTrue(result.Paging.NumberOfPages < page);
@@ -74,8 +75,9 @@ namespace FamousHumidors.Tests
             int categoryID = 1;
             int priceID = 0;
             int humidorSizeID = 0;
+            int colorID = 0;
             //Act
-            var search = new SearchModel(page,resultsPerPage,sortID,categoryID,priceID,humidorSizeID);
+            var search = new SearchModel(page,resultsPerPage,sortID,categoryID,priceID,humidorSizeID, colorID);
             var result = search.Search();
             // Assert
             Assert.AreEqual(8,result.Paging.ResultsPerPage);
@@ -91,8 +93,9 @@ namespace FamousHumidors.Tests
             int categoryID = 1;
             int priceID = 0;
             int humidorSizeID = 0;
+            int colorID = 0; 
             //Act
-            var search = new SearchModel(page, resultsPerPage, sortID, categoryID, priceID, humidorSizeID);
+            var search = new SearchModel(page, resultsPerPage, sortID, categoryID, priceID, humidorSizeID, colorID);
             var result = search.Search();
             // Assert
             Assert.AreEqual(8, result.Paging.ResultsPerPage);
@@ -108,8 +111,9 @@ namespace FamousHumidors.Tests
             int categoryID = 1;
             int priceID = 0;
             int humidorSizeID = 0;
+            int colorID = 0;
             //Act
-            var search = new SearchModel(page, resultsPerPage, sortID, categoryID, priceID, humidorSizeID);
+            var search = new SearchModel(page, resultsPerPage, sortID, categoryID, priceID, humidorSizeID, colorID);
             var result = search.Search();
             // Assert
             Assert.AreEqual(1, result.Sorting.Id);
@@ -125,8 +129,9 @@ namespace FamousHumidors.Tests
             int categoryID = 1;
             int priceID = 0;
             int humidorSizeID = 0;
+            int colorID = 0;
             //Act
-            var search = new SearchModel(page, resultsPerPage, sortID, categoryID, priceID, humidorSizeID);
+            var search = new SearchModel(page, resultsPerPage, sortID, categoryID, priceID, humidorSizeID, colorID);
             var result = search.Search();
             // Assert
             Assert.AreEqual(1, result.Sorting.Id);
@@ -142,8 +147,9 @@ namespace FamousHumidors.Tests
             int categoryID = -1;
             int priceID = 0;
             int humidorSizeID = 0;
+            int colorID = 0;
             //Act
-            var search = new SearchModel(page, resultsPerPage, sortID, categoryID, priceID, humidorSizeID);
+            var search = new SearchModel(page, resultsPerPage, sortID, categoryID, priceID, humidorSizeID, colorID);
             var result = search.Search();
             // Assert
             Assert.AreEqual(1, result.Filters.CategoryFilters.Id);
@@ -159,8 +165,9 @@ namespace FamousHumidors.Tests
             int categoryID = 9999;
             int priceID = 0;
             int humidorSizeID = 0;
+            int colorID = 0;
             //Act
-            var search = new SearchModel(page, resultsPerPage, sortID, categoryID, priceID, humidorSizeID);
+            var search = new SearchModel(page, resultsPerPage, sortID, categoryID, priceID, humidorSizeID, colorID);
             var result = search.Search();
             // Assert
             Assert.AreEqual(1, result.Filters.CategoryFilters.Id);
@@ -176,8 +183,9 @@ namespace FamousHumidors.Tests
             int categoryID = 1;
             int priceID = -1;
             int humidorSizeID = 0;
+            int colorID = 0;
             //Act
-            var search = new SearchModel(page, resultsPerPage, sortID, categoryID, priceID, humidorSizeID);
+            var search = new SearchModel(page, resultsPerPage, sortID, categoryID, priceID, humidorSizeID, colorID);
             var result = search.Search();
             // Assert
             Assert.AreEqual(0, result.Filters.PriceFilters.Id);
@@ -196,8 +204,9 @@ namespace FamousHumidors.Tests
             int categoryID = 1;
             int priceID = 9999;
             int humidorSizeID = 0;
+            int colorID = 0;
             //Act
-            var search = new SearchModel(page, resultsPerPage, sortID, categoryID, priceID, humidorSizeID);
+            var search = new SearchModel(page, resultsPerPage, sortID, categoryID, priceID, humidorSizeID, colorID);
             var result = search.Search();
             // Assert
             Assert.AreEqual(0, result.Filters.PriceFilters.Id);
@@ -216,8 +225,9 @@ namespace FamousHumidors.Tests
             int categoryID = 1;
             int priceID = 1;
             int humidorSizeID = -1;
+            int colorID = 0;
             //Act
-            var search = new SearchModel(page, resultsPerPage, sortID, categoryID, priceID, humidorSizeID);
+            var search = new SearchModel(page, resultsPerPage, sortID, categoryID, priceID, humidorSizeID, colorID);
             var result = search.Search();
             // Assert
             Assert.AreEqual(0, result.Filters.HumidorSizeFilters.Id);
@@ -235,13 +245,54 @@ namespace FamousHumidors.Tests
             int categoryID = 1;
             int priceID = 1;
             int humidorSizeID = 9999;
+            int colorID = 0;
             //Act
-            var search = new SearchModel(page, resultsPerPage, sortID, categoryID, priceID, humidorSizeID);
+            var search = new SearchModel(page, resultsPerPage, sortID, categoryID, priceID, humidorSizeID, colorID);
             var result = search.Search();
             // Assert
             Assert.AreEqual(0, result.Filters.HumidorSizeFilters.Id);
             Assert.AreEqual("", result.Filters.HumidorSizeFilters.Name);
             Assert.AreEqual("", result.Filters.HumidorSizeFilters.EqualityValue);
+        }
+
+        [TestMethod]
+        public void SearchTest_ColorID_Negative()
+        {
+            //Arrange
+            int page = 1;
+            int resultsPerPage = 8;
+            int sortID = 1;
+            int categoryID = 1;
+            int priceID = 1;
+            int humidorSizeID = 0;
+            int colorID = -1;
+            //Act
+            var search = new SearchModel(page, resultsPerPage, sortID, categoryID, priceID, humidorSizeID, colorID);
+            var result = search.Search();
+            // Assert
+            Assert.AreEqual(0, result.Filters.ColorFilters.Id);
+            Assert.AreEqual("", result.Filters.ColorFilters.Name);
+            Assert.AreEqual("", result.Filters.ColorFilters.EqualityValue);
+        }
+
+        [TestMethod]
+        public void SearchTest_ColorID_InvalidInteger()
+        {
+            //Arrange
+            int page = 1;
+            int resultsPerPage = 8;
+            int sortID = 1;
+            int categoryID = 1;
+            int priceID = 1;
+            int humidorSizeID = 0;
+            int colorID = 9999;
+            //Act
+            var search = new SearchModel(page, resultsPerPage, sortID, categoryID, priceID, humidorSizeID, colorID);
+            var result = search.Search();
+            // Assert
+            Assert.AreEqual(0, result.Filters.ColorFilters.Id);
+            Assert.AreEqual("", result.Filters.ColorFilters.Name);
+            Assert.AreEqual("", result.Filters.ColorFilters.EqualityValue);
         }
 
     }

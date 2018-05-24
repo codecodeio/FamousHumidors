@@ -17,12 +17,13 @@ namespace FamousHumidors.Models
         public int CategoryID { get; set; }
         public int PriceID { get; set; }
         public int HumidorSizeID { get; set; }
+        public int ColorID { get; set; }
 
         //public SearchFiltersModel SearchFilters { get; set; }
         //public PagingModel Paging { get; set; }
         //public SortingFiltersModel Sorting { get; set; }
 
-        public SearchModel(int page = 1, int resultsPerPage = 8, int sortID = 1, int categoryID = 1, int priceID = 0, int humidorSizeID = 0)
+        public SearchModel(int page = 1, int resultsPerPage = 8, int sortID = 1, int categoryID = 1, int priceID = 0, int humidorSizeID = 0, int colorID = 0)
         {
             if (page <= 0) throw new ArgumentException("Page must be greater than 0");
 
@@ -32,6 +33,7 @@ namespace FamousHumidors.Models
             CategoryID = categoryID;
             PriceID = priceID;
             HumidorSizeID = humidorSizeID;
+            ColorID = colorID;
         }
 
         public SearchViewModel Search()
@@ -45,11 +47,14 @@ namespace FamousHumidors.Models
             //humidor size filters
             var humidorSizeFilters = new HumidorSizeFiltersModel(HumidorSizeID);
 
+            //color filters
+            var colorFilters = new ColorFiltersModel(ColorID);
+
             //sorting filters
             var sortingFilters = new SortingFiltersModel(SortID);
 
             //all search filters
-            var searchFilters = new SearchFiltersModel(categoryFilters, priceFilters, humidorSizeFilters);
+            var searchFilters = new SearchFiltersModel(categoryFilters, priceFilters, humidorSizeFilters, colorFilters);
 
             //category counts
             categoryFilters.Counts(searchFilters);
@@ -61,6 +66,12 @@ namespace FamousHumidors.Models
             if (categoryFilters.Name == "Humidors")
             {
                 humidorSizeFilters.Counts(searchFilters);
+            }
+
+            //color counts
+            if (categoryFilters.Name == "Lighters")
+            {
+                colorFilters.Counts(searchFilters);
             }
 
             //number of items
@@ -77,6 +88,9 @@ namespace FamousHumidors.Models
 
             //humidor size filter urls
             humidorSizeFilters.Urls(searchFilters, paging, sortingFilters);
+
+            //color filter urls
+            colorFilters.Urls(searchFilters, paging, sortingFilters);
 
             //sorting urls
             sortingFilters.Urls(searchFilters, paging);
@@ -104,6 +118,11 @@ namespace FamousHumidors.Models
             if (searchFilters.CategoryFilters.Name == "Humidors" && searchFilters.HumidorSizeFilters.Id != 0)
             {
                 items = itemRepository.AsItemModelByHumidorSize(searchFilters.HumidorSizeFilters.EqualityValue);
+            }
+            //filter by color
+            else if (searchFilters.CategoryFilters.Name == "Lighters" && searchFilters.ColorFilters.Id != 0)
+            {
+                items = itemRepository.AsItemModelByColor(searchFilters.ColorFilters.EqualityValue);
             }
             //search items
             else

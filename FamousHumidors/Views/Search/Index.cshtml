@@ -78,81 +78,55 @@
                         }
                     </ul>
                 </div>
-                <!-- Price Range Filtering -->
-                @*<div class="sidebar_section">
-                    <div class="sidebar_title">
-                        <h5>Filter by Price</h5>
-                    </div>
-                    <p>
-                        <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
-                    </p>
-                    <div id="slider-range"></div>
-                    <div class="filter_button"><span>filter</span></div>
-                </div>*@
-
+                
                 <!-- Sizes -->
                 @if(Model.Filters.CategoryFilters.Name == "Humidors")
                 {
                     <div class="sidebar_section">
-                    <div class="sidebar_title">
-                        <h5>Size</h5>
-                    </div>
-                    <ul class="sidebar_categories">
-                        @for(int i=1; i <= Model.Filters.HumidorSizeFilters.Filters.Count(); i++)
-                        {
-                            if(@Model.Filters.HumidorSizeFilters.Filters[i].Name == @Model.Filters.HumidorSizeFilters.Name)
+                        <div class="sidebar_title">
+                            <h5>Size</h5>
+                        </div>
+                        <ul class="sidebar_categories">
+                            @for(int i=1; i <= Model.Filters.HumidorSizeFilters.Filters.Count(); i++)
                             {
-                                <li class="active"><a href="@Model.Filters.HumidorSizeFilters.Filters[i].Url"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>@Model.Filters.HumidorSizeFilters.Filters[i].Name</a></li>
-                            }
-                            else
-                            {
-                                <li><a href="@Model.Filters.HumidorSizeFilters.Filters[i].Url">@Model.Filters.HumidorSizeFilters.Filters[i].Name (@Model.Filters.HumidorSizeFilters.Filters[i].Count)</a></li>
-                            }
+                                if(@Model.Filters.HumidorSizeFilters.Filters[i].Name == @Model.Filters.HumidorSizeFilters.Name)
+                                {
+                                    <li class="active"><a href="@Model.Filters.HumidorSizeFilters.Filters[i].Url"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>@Model.Filters.HumidorSizeFilters.Filters[i].Name</a></li>
+                                }
+                                else
+                                {
+                                    <li><a href="@Model.Filters.HumidorSizeFilters.Filters[i].Url">@Model.Filters.HumidorSizeFilters.Filters[i].Name (@Model.Filters.HumidorSizeFilters.Filters[i].Count)</a></li>
+                                }
                         
-                        }
-                    </ul>
-                </div>
-                @*<div class="sidebar_section">
-                    <div class="sidebar_title">
-                        <h5>Size</h5>
+                            }
+                        </ul>
                     </div>
-                    <ul class="checkboxes">
-                        <li><i class="fa fa-square-o" aria-hidden="true"></i><span>Large</span></li>
-                        <li class="active"><i class="fa fa-square" aria-hidden="true"></i><span>Medium</span></li>
-                        <li><i class="fa fa-square-o" aria-hidden="true"></i><span>Small</span></li>
-                        <li><i class="fa fa-square-o" aria-hidden="true"></i><span>Travel</span></li>
-                    </ul>
-                </div>*@
                 }
 
                 <!-- Color -->
-                @if(Model.Filters.CategoryFilters.Name == "Lighters")
+                @if (Model.Filters.CategoryFilters.Name == "Lighters")
                 {
-                <div class="sidebar_section">
-                    <div class="sidebar_title">
-                        <h5>Color</h5>
-                    </div>
-                    <ul class="checkboxes">
-                        <li><i class="fa fa-square-o" aria-hidden="true"></i><span>Black</span></li>
-                        <li class="active"><i class="fa fa-square" aria-hidden="true"></i><span>Pink</span></li>
-                        <li><i class="fa fa-square-o" aria-hidden="true"></i><span>White</span></li>
-                        <li><i class="fa fa-square-o" aria-hidden="true"></i><span>Blue</span></li>
-                        <li><i class="fa fa-square-o" aria-hidden="true"></i><span>Orange</span></li>
-                        <li><i class="fa fa-square-o" aria-hidden="true"></i><span>White</span></li>
-                        <li><i class="fa fa-square-o" aria-hidden="true"></i><span>Blue</span></li>
-                        <li><i class="fa fa-square-o" aria-hidden="true"></i><span>Orange</span></li>
-                        <li><i class="fa fa-square-o" aria-hidden="true"></i><span>White</span></li>
-                        <li><i class="fa fa-square-o" aria-hidden="true"></i><span>Blue</span></li>
-                        <li><i class="fa fa-square-o" aria-hidden="true"></i><span>Orange</span></li>
-                    </ul>
-                    <div class="show_more">
-                        <span><span>+</span>Show More</span>
-                    </div>
-                </div>
-                }
-                
-            </div>
+                    <div class="sidebar_section">
+                        <div class="sidebar_title">
+                            <h5>Color</h5>
+                        </div>
+                        <ul class="sidebar_categories">
+                            @for (int i = 1; i <= Model.Filters.ColorFilters.Filters.Count(); i++)
+                            {
+                                if (@Model.Filters.ColorFilters.Filters[i].Name == @Model.Filters.ColorFilters.Name)
+                                {
+                                    <li class="active"><a href="@Model.Filters.ColorFilters.Filters[i].Url"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>@Model.Filters.ColorFilters.Filters[i].Name</a></li>
+                                }
+                                else
+                                {
+                                    <li><a href="@Model.Filters.ColorFilters.Filters[i].Url">@Model.Filters.ColorFilters.Filters[i].Name (@Model.Filters.ColorFilters.Filters[i].Count)</a></li>
+                                }
 
+                            }
+                        </ul>
+                    </div>
+                }
+            </div>
             <!-- Main Content -->
 
             <div class="main_content">

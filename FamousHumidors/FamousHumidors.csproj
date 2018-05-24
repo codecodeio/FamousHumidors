@@ -262,6 +262,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\CategoryFiltersModel.cs" />
+    <Compile Include="Models\ColorFiltersModel.cs" />
     <Compile Include="Models\EqualityFilterModel.cs" />
     <Compile Include="Models\FilterModel.cs" />
     <Compile Include="Models\Globals.cs" />

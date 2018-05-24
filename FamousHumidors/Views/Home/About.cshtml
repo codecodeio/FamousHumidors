@@ -30,24 +30,23 @@
 <div class="tabs_section_container" style="margin-top: -150px;">
 
     <div class="container">
-        
+
         <div class="row">
             <div class="col">
-
                 <!-- Tab Description -->
                 <div id="tab_1" class="tab_container active">
                     <div class="row">
                         <div class="col-lg-5 desc_col">
                             <div class="tab_text_block">
                                 <h2>Responsive</h2>
-                                <p>Responsive websites look amazing on any device.</p>
+                                <p>Responsive websites look amazing on any device. This website is responsive.</p>
                             </div>
                             <div class="tab_image">
                                 <img src="~/images/emails-reponsive-grid.svg" alt="">
                             </div>
                             <div class="tab_text_block">
-                                <h2>Data</h2>
-                                <p>Nam tempus turpis at metus scelerisque placerat nulla deumantos solicitud felis. Pellentesque diam dolor, elementum etos lobortis des mollis ut...</p>
+                                <h2>The Repository Pattern</h2>
+                                <p>The repository pattern separates the data and business logic from the application. This website can be altered from using our current databases to a Netsuite database by changing one file. </p>
                             </div>
                         </div>
                         <div class="col-lg-5 offset-lg-2 desc_col">
@@ -56,22 +55,56 @@
                             </div>
                             <div class="tab_text_block">
                                 <h2>Code</h2>
-                                <p>Correctly written code is faster and infinitely easier to maintain. Anyone can deliver a beautiful website but the structure of the code determines how costly the maintenance of your software will be.</p>
+                                <p>Correctly written code is faster and infinitely easier to maintain. The structure of the code determines how costly the maintenance of your software will be. This website uses modern coding patterns: OOP, MVC, and The Repository Pattern to achieve this. </p>
+                            </div>
+                            <div class="tab_image desc_last">
+                                <img src="~/images/repositorypattern.png" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab Description -->
+                <div id="tab_1" class="tab_container active">
+                    <div class="row">
+                        <div class="col-lg-5 desc_col">
+                            <div class="tab_image">
+                                <img src="~/images/tests.png" alt="">
+                            </div>
+                            <div class="tab_text_block">
+                                <h2>Tested</h2>
+                                <p>Automated code testing</p>
                             </div>
                             <div class="tab_image desc_last">
                                 <img src="~/images/internetOfThings.jpg" alt="">
                             </div>
                         </div>
+
+                        <div class="col-lg-5 offset-lg-2 desc_col">
+                            <div class="tab_text_block">
+                                <h2>Secure</h2>
+                                <p>Mass Assignment, CSRF, XSS.</p>
+                            </div>
+                            <div class="tab_image">
+                                <img src="~/images/security.png" alt="">
+                            </div>
+                            <div class="tab_text_block">
+                                <h2>Fast</h2>
+                                <p>Caching, Available offline </p>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
-                
-            </div>
 
             </div>
         </div>
+
     </div>
 
 </div>
+
+
 
 <!-- Benefit -->
 @Html.Partial("_Benefit")
