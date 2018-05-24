@@ -18,7 +18,22 @@ namespace FamousHumidors.Models
             {
                 Page = page;
             }
-            ResultsPerPage = resultsPerPage;
+            switch (resultsPerPage)
+            {
+                case 8:
+                    ResultsPerPage = resultsPerPage;
+                    break;
+                case 16:
+                    ResultsPerPage = resultsPerPage;
+                    break;
+                case 24:
+                    ResultsPerPage = resultsPerPage;
+                    break;
+                default:
+                    ResultsPerPage = 8;
+                    break;
+            }
+           
             SearchFilters = searchFilters;
             SortFilters = sortFilters;
 

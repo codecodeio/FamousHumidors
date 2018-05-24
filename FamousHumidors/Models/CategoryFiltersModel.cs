@@ -8,22 +8,20 @@ namespace FamousHumidors.Models
 {
     public class CategoryFiltersModel : IEqualityFilters
     {
-        public CategoryFiltersModel(int id = 0)
+        public CategoryFiltersModel(int id = 1)
         {
             FilterName = "Category";
             Filters = DefaultFilters();
-            
-            Name = Filters[id].Name;
-            if (id > 0 && id <= Filters.Count())
+            if (id < 1 || id > Filters.Count())
             {
-                Id = id;
-                EqualityValue = Filters[id].EqualityValue;
+                Id = 1;
             }
             else
             {
-                Id = 1;
-                EqualityValue = Filters[id].EqualityValue;
+                Id = id;
             }
+            EqualityValue = Filters[Id].EqualityValue;
+            Name = Filters[Id].Name;
         }
 
         public int Id { get; set; }

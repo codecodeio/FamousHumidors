@@ -8,5 +8,6 @@ namespace FamousHumidors.Models
     public static class Globals
     {
         public const string SearchUrl = "/search";
+        public const string CacheDuration = "Short";
     }
 }

@@ -4,6 +4,7 @@ using System.Dynamic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI;
 using FamousHumidors.Models;
 using FamousHumidors.ViewModels;
 using Products;
@@ -17,6 +18,7 @@ namespace FamousHumidors.Controllers
         private const string Lighter_Pref = "LG";
         private Items db = new Items();
 
+        [OutputCache(CacheProfile = Globals.CacheDuration, Location = OutputCacheLocation.Server)]
         public ActionResult Index()
         {
             var humidors =
@@ -115,6 +117,7 @@ namespace FamousHumidors.Controllers
             return View(homeViewModel);
         }
 
+        [OutputCache(CacheProfile = Globals.CacheDuration, Location = OutputCacheLocation.Server)]
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
@@ -122,6 +125,7 @@ namespace FamousHumidors.Controllers
             return View();
         }
 
+        [OutputCache(CacheProfile = Globals.CacheDuration, Location = OutputCacheLocation.Server)]
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";

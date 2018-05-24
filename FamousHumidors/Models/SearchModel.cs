@@ -24,6 +24,8 @@ namespace FamousHumidors.Models
 
         public SearchModel(int page = 1, int resultsPerPage = 8, int sortID = 1, int categoryID = 1, int priceID = 0, int humidorSizeID = 0)
         {
+            if (page <= 0) throw new ArgumentException("Page must be greater than 0");
+
             Page = page;
             ResultsPerPage = resultsPerPage;
             SortID = sortID;

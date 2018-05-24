@@ -9,7 +9,7 @@ namespace FamousHumidors.Tests.Controllers
     public class SearchControllerTest
     {
         [TestMethod]
-        public void Index()
+        public void SearchControllerIndexTest()
         {
             //Arrange
             SearchController controller = new SearchController();

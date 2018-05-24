@@ -14,7 +14,7 @@ namespace FamousHumidors.Tests.Controllers
     public class HomeControllerTest
     {
         [TestMethod]
-        public void Index()
+        public void HomeControllerIndexTest()
         {
             // Arrange
             HomeController controller = new HomeController();
