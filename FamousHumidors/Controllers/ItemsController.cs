@@ -7,6 +7,7 @@ using System.Net;
 using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI;
 using FamousHumidors.Models;
 using FamousHumidors.ViewModels;
 using Products;
@@ -75,17 +76,19 @@ namespace FamousHumidors.Controllers
         }
 
         // GET: Items/Details/5
+        [OutputCache(CacheProfile = Globals.CacheDuration, Location = OutputCacheLocation.Server)]
         public ActionResult Details(int? id)
         {
-            //id not provided
+           //id not provided
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-
+            
             //find item in DB
-            Item item = db.Products.Find(id);
-
+            ItemRepository itemRepository = new ItemRepository();
+            var item = itemRepository.Find((int)id);
+            
             //item not found
             if (item == null)
             {
@@ -109,8 +112,11 @@ namespace FamousHumidors.Controllers
                     break;
             }
 
+            //breadcrumb url
+            var breadCrumbUrl = new CategoryFiltersModel(baseItem.Category).BreadCrumbUrl();
+            
             //view model
-            var detailViewModel = new DetailViewModel(baseItem,detailItem);
+            var detailViewModel = new DetailViewModel(baseItem,detailItem,breadCrumbUrl);
 
             return View(detailViewModel);
         }

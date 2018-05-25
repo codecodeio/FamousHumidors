@@ -124,6 +124,17 @@ namespace Products
             return query;
         }
 
+        public Item Find(int id)
+        {
+            return db.Products.Find(id);
+        }
+
+        public ItemModel FindAsItemModel(int id)
+        {
+            var item = db.Products.Find(id);
+            return new ItemModel(item);
+        }
+
         public IQueryable<ItemModel> AsItemModel()
         {
             return db.Products.Select(r => new ItemModel

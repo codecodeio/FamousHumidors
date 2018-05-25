@@ -24,6 +24,15 @@ namespace FamousHumidors.Models
             Name = Filters[Id].Name;
         }
 
+        public CategoryFiltersModel(string category = "")
+        {
+            FilterName = "Category";
+            Filters = DefaultFilters();
+            Id = CategoryID(category);
+            EqualityValue = Filters[Id].EqualityValue;
+            Name = Filters[Id].Name;
+        }
+
         public int Id { get; set; }
         public string Name { get; set; }
         public string FilterName { get; set; }
@@ -103,6 +112,26 @@ namespace FamousHumidors.Models
                 Filters[i].Url = url;
             }
             
+        }
+
+        public int CategoryID(string category)
+        {
+            var categoryID = 1;
+
+            for (var i = 1; i <= Filters.Count(); i++){
+                if(Filters[i].EqualityValue == category)
+                {
+                    categoryID = i;
+                    break;
+                }
+            }
+
+            return categoryID;
+        }
+
+        public string BreadCrumbUrl()
+        {
+            return "/search?categoryID=" + Id;
         }
     }
 }

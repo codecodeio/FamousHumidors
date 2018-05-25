@@ -23,8 +23,8 @@
 
             <div class="breadcrumbs d-flex flex-row align-items-center">
                 <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li class="active"><a href="index.html"><i class="fa fa-angle-right" aria-hidden="true"></i>Shop</a></li>
+                    <li><a href="/">Home</a></li>
+                    <li class="active"><a href="/search"><i class="fa fa-angle-right" aria-hidden="true"></i>Shop</a></li>
                 </ul>
             </div>
 
@@ -238,7 +238,8 @@
                                     {
                                         foreach (var item in Model.Items)
                                         {
-                                            <div class="product-item men">
+                                            <div class="product-item">
+                                                <a href="@Html.DisplayFor(modelItem => item.Url)">
                                                 <div class="product discount product_filter">
                                                     <div class="product_image">
                                                         <img src="https://www.famous-smoke.com/@Html.DisplayFor(modelItem => item.Image)" alt="">
@@ -249,7 +250,7 @@
                                                         <div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>-$@String.Format("{0:N0}", item.PriceMsrp - item.Price)</span></div>
                                                     }
                                                     <div class="product_info">
-                                                        <h6 class="product_name"><a href="@Html.DisplayFor(modelItem => item.Url)">@Html.DisplayFor(modelItem => item.Name)</a></h6>
+                                                        <h6 class="product_name">@Html.DisplayFor(modelItem => item.Name)</h6>
                                                         <div class="product_price">
                                                             $@Html.DisplayFor(modelItem => item.Price)
                                                             @if (item.PriceMsrp >= item.Price + 1)
@@ -259,6 +260,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                </a>
                                                 <div class="red_button add_to_cart_button"><a href="/cart?id=@Html.DisplayFor(modelItem => item.Id)">add to cart</a></div>
                                             </div>
                                         }

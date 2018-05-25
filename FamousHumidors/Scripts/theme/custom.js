@@ -185,12 +185,27 @@ jQuery(document).ready(function($)
     	if($('.timer').length)
     	{
     		// Uncomment line below and replace date
-	    	// var target_date = new Date("Dec 7, 2017").getTime();
+	    	//var target_date = new Date("Dec 7, 2017").getTime();
 
+            //var today = new Date("May 25, 2018");
+            ////friday
+            //if (today.getDay() == 5) {
+            //    d.setDate(today.getDate()+7 + (7 + 5 - today.getDay()) % 7);
+            //}
+            ////not friday
+            //else {
+            //    d.setDate(today.getDate() + (7 + 5 - today.getDay()) % 7);
+            //}
+
+            var target_date = new Date();
+            target_date.setDate(target_date.getDate() + 1 + (7 + 5 - target_date.getDay()) % 7);
+            target_date.setHours(0,0,0,0);
+            target_date = target_date.getTime();
+            
 	    	// comment lines below
-	    	var date = new Date();
-	    	date.setDate(date.getDate() + 3);
-	    	var target_date = date.getTime();
+	    	//var date = new Date();
+	    	//date.setDate(date.getDate() + 3);
+	    	//var target_date = date.getTime();
 	    	//----------------------------------------
 	 
 			// variables for time units

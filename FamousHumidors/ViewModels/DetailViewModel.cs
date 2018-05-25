@@ -11,11 +11,12 @@ namespace FamousHumidors.ViewModels
     {
         public ItemModel BaseItem { get; set; }
         public Dictionary<string,string> DetailItem { get; set; }
-       
-        public DetailViewModel(ItemModel baseItem, Dictionary<string, string> detailItem)
+        public string BreadCrumbUrl { get; set; }
+        public DetailViewModel(ItemModel baseItem, Dictionary<string, string> detailItem, string breadCrumbUrl)
         {
             BaseItem = baseItem;
             DetailItem = detailItem;
+            BreadCrumbUrl = breadCrumbUrl;
         }
     }
 }

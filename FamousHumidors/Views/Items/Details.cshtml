@@ -18,7 +18,7 @@
             <div class="breadcrumbs d-flex flex-row align-items-center">
                 <ul>
                     <li><a href="/">Home</a></li>
-                    <li><a href="categories.html"><i class="fa fa-angle-right" aria-hidden="true"></i> @Html.DisplayFor(modelItem => Model.BaseItem.Category)</a></li>
+                    <li><a href="@Model.BreadCrumbUrl"><i class="fa fa-angle-right" aria-hidden="true"></i> @Html.DisplayFor(modelItem => Model.BaseItem.Category)</a></li>
                     @*<li class="active"><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i>Single Product</a></li>*@
                 </ul>
             </div>
