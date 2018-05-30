@@ -1,4 +1,5 @@
-﻿@{
+﻿@using FamousHumidors.Models
+@{
     ViewBag.Title = "Contact";
 }
 <link rel="stylesheet" href="/Content/plugins/themify-icons/themify-icons.css">
@@ -83,7 +84,7 @@
                     <li><a href="https://www.instagram.com/famoussmokeshop" style="background-color: #8a3ab9"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
                     <li><a href="https://www.youtube.com/user/FamousSmokeShopCigar" style="background-color: #fb4343"><i class="fa fa-youtube" aria-hidden="true"></i></a></li>
                     <li><a href="https://www.pinterest.com/FamousSmokeShop" style="background-color: #bd081c"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
-                   
+
                     <li><a href="https://plus.google.com/u/0/+famoussmokeshop/posts" style="background-color: #fb4343"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
 
                 </ul>
@@ -113,7 +114,7 @@
 </div>
 
 <!-- Newsletter -->
-@Html.Partial("_Newsletter")
+@Html.Partial("_Newsletter", new NewsletterModel())
 
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCIwF204lFZg1y4kPSIhKaHEXMLYxxuMhA"></script>
 @Scripts.Render("~/Content/plugins/jquery-ui-1.12.1.custom/jquery-ui.js")

@@ -1,4 +1,5 @@
-﻿@{
+﻿@using FamousHumidors.Models
+@{
     ViewBag.Title = "About Famous Humidors";
 }
 
@@ -73,7 +74,7 @@
                             </div>
                             <div class="tab_text_block">
                                 <h2>Tested</h2>
-                                <p>Automated code testing</p>
+                                <p>This website uses automated code testing. Remember that quick change that wasn't supposed to break anything else? Automated tests quickly identify issues before your customers do.</p>
                             </div>
                             <div class="tab_image desc_last">
                                 <img src="~/images/internetOfThings.jpg" alt="">
@@ -83,14 +84,14 @@
                         <div class="col-lg-5 offset-lg-2 desc_col">
                             <div class="tab_text_block">
                                 <h2>Secure</h2>
-                                <p>Mass Assignment, CSRF, XSS.</p>
+                                <p>This website is protected againse Mass Assignment, CSRF, and XSS.</p>
                             </div>
                             <div class="tab_image">
                                 <img src="~/images/security.png" alt="">
                             </div>
                             <div class="tab_text_block">
                                 <h2>Fast</h2>
-                                <p>Caching, Available offline </p>
+                                <p>This website uses caching to speed up frequently used pages.</p>
                             </div>
                         </div>
 
@@ -110,7 +111,7 @@
 @Html.Partial("_Benefit")
 
 <!-- Newsletter -->
-@Html.Partial("_Newsletter")
+@Html.Partial("_Newsletter", new NewsletterModel())
 
 @Scripts.Render("~/Scripts/theme/single_custom.js")
 @*@RenderSection("scripts", required: false)*@

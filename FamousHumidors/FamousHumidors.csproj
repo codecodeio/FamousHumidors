@@ -257,6 +257,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ItemsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\NewsletterController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -272,6 +273,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IMinMaxFilters.cs" />
     <Compile Include="Models\MinMaxFilterModel.cs" />
+    <Compile Include="Models\NewsletterModel.cs" />
     <Compile Include="Models\PriceFiltersModel.cs" />
     <Compile Include="Models\SearchFiltersModel.cs" />
     <Compile Include="Models\PagingModel.cs" />

@@ -1,4 +1,5 @@
-﻿@model FamousHumidors.ViewModels.HomeViewModel
+﻿@using FamousHumidors.Models
+@model FamousHumidors.ViewModels.HomeViewModel
 
 {
 
@@ -136,7 +137,7 @@
                     <ul class="timer">
                         <li class="d-inline-flex flex-column justify-content-center align-items-center">
                             <div id="day" class="timer_num"></div>
-                            <div class="timer_unit">Day</div>
+                            <div class="timer_unit">Days</div>
                         </li>
                         <li class="d-inline-flex flex-column justify-content-center align-items-center">
                             <div id="hour" class="timer_num"></div>
@@ -217,11 +218,12 @@
     </div>
 </div>
 
+<a id="blogs"></a>
+
 <!-- Benefit -->
 @Html.Partial("_Benefit")
 
 <!-- Blogs -->
-
 <div class="blogs">
     <div class="container">
         <div class="row">
@@ -267,4 +269,4 @@
 </div>
 
 <!-- Newsletter -->
-@Html.Partial("_Newsletter")
+@Html.Partial("_Newsletter",new NewsletterModel())

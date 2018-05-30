@@ -13,11 +13,6 @@ namespace FamousHumidors.Controllers
 {
     public class HomeController : Controller
     {
-        private const string Humidor_Pref = "HU";
-        private const string Hygrometer_Pref = "HY";
-        private const string Lighter_Pref = "LG";
-        private Items db = new Items();
-
         [OutputCache(CacheProfile = Globals.CacheDuration, Location = OutputCacheLocation.Server)]
         public ActionResult Index()
         {

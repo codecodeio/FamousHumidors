@@ -1,4 +1,5 @@
-﻿@model FamousHumidors.ViewModels.DetailViewModel
+﻿@using FamousHumidors.Models
+@model FamousHumidors.ViewModels.DetailViewModel
 
 @{
     ViewBag.Title = "Famous Humidors : " + Model.BaseItem.Category;
@@ -319,7 +320,7 @@
 @Html.Partial("_Benefit")
 
 <!-- Newsletter -->
-@Html.Partial("_Newsletter")
+@Html.Partial("_Newsletter", new NewsletterModel())
 
 @Scripts.Render("~/Scripts/theme/single_custom.js")
 @*@RenderSection("scripts", required: false)*@

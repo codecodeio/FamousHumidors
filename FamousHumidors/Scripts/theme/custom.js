@@ -450,4 +450,24 @@ jQuery(document).ready(function($)
     		}
     	}
     }
+    
+    $(document).on("submit", "#newsletter_form", {},function (event) {
+        event.preventDefault();
+
+        var email = $("#newsletter_email").val();
+        var token = $("#newsletter_form input[name=__RequestVerificationToken]").val();
+        var hack = $("#newsletter_hack").val();
+        var data = { "email": email, "__RequestVerificationToken": token, "hack": hack };
+        
+        var jqxhr = $.post("/newsletter/create", data, function (data) {
+            $("#newsletter_partial").replaceWith(data);
+        })
+        .fail(function (data) {
+            $("#newsletter_partial").replaceWith(data);
+        });
+
+    });
+
+    
+
 });
