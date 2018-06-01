@@ -21,7 +21,7 @@ namespace FamousHumidors.Models
         }
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
-            if (!Valid() || Email == "" || Email == null)
+            if (!Valid() || string.IsNullOrEmpty(Email) )
             {
                 yield return new ValidationResult("Email address invalid.");
             }
@@ -32,7 +32,7 @@ namespace FamousHumidors.Models
             try
             {
                 var addr = new System.Net.Mail.MailAddress(Email);
-                if (addr.Address == Email && addr.Address.IndexOf('.') >= 0)
+                if ( addr.Address == Email && addr.Address.IndexOf('.') >= 0 && addr.Address.IndexOf('@') >= 0 )
                 {
                     return true;
                 }

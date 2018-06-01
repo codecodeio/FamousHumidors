@@ -205,11 +205,16 @@
                                             <span>@Html.DisplayFor(modelItem => Model.Paging.Page)</span>
                                        
                                             <ul class="page_selection">
-                                                @if (Model.Paging.NextPage != Model.Paging.LastPage)
+                                                
+                                                @if(Model.Paging.Page < 3)
                                                 {
                                                     <li><a href="@Html.DisplayFor(modelItem => Model.Paging.NextPageUrl)">@Html.DisplayFor(modelItem => Model.Paging.NextPage)</a></li>
-                                                    <li><a href="#">...</a></li>
                                                 }
+                                                else
+                                                {
+                                                    <li><a href="@Html.DisplayFor(modelItem => Model.Paging.FirstPageUrl)">@Html.DisplayFor(modelItem => Model.Paging.FirstPage)</a></li>
+                                                }
+                                                <li><a href="#">...</a></li>
                                              
                                                 @if (Model.Paging.MidPage != Model.Paging.NextPage && Model.Paging.Page != Model.Paging.LastPage && Model.Paging.MidPage != Model.Paging.Page)
                                                 {
@@ -284,12 +289,17 @@
                                             <span>@Html.DisplayFor(modelItem => Model.Paging.Page)</span>
                                        
                                             <ul class="page_selection">
-                                                @if (Model.Paging.NextPage != Model.Paging.LastPage)
+                                                 
+                                                @if(Model.Paging.Page < 3)
                                                 {
                                                     <li><a href="@Html.DisplayFor(modelItem => Model.Paging.NextPageUrl)">@Html.DisplayFor(modelItem => Model.Paging.NextPage)</a></li>
-                                                    <li><a href="#">...</a></li>
                                                 }
-                                             
+                                                else
+                                                {
+                                                    <li><a href="@Html.DisplayFor(modelItem => Model.Paging.FirstPageUrl)">@Html.DisplayFor(modelItem => Model.Paging.FirstPage)</a></li>
+                                                }
+                                                <li><a href="#">...</a></li>
+                                               
                                                 @if(Model.Paging.MidPage != Model.Paging.NextPage && Model.Paging.Page != Model.Paging.LastPage && Model.Paging.MidPage != Model.Paging.Page)
                                                 {
                                                     <li><a href="@Html.DisplayFor(modelItem => Model.Paging.MidPageUrl)">@Html.DisplayFor(modelItem => Model.Paging.MidPage)</a></li>
